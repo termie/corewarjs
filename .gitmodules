@@ -1,0 +1,3 @@
+[submodule "third_party/node-xunit"]
+	path = third_party/node-xunit
+	url = git://github.com/termie/node-xunit.git
