@@ -1,3 +1,4 @@
 lib/pmars.node
 third_party/pmars-0.9.2/src/.lock-wscript
 third_party/pmars-0.9.2/src/build-waf/
+public/corewar.js

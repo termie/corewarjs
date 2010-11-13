@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="core.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js"></script>
+  <Script src="raphael.js"></script>
+  <script>
+    exports = {};
+  </script>
+  <script src="corewar.js"></script>
+  <script>
+    var listWarriors = function () {
+      return dojo.xhrGet({
+        url: 'http://localhost:8001/list',
+        handleAs: 'json',
+        headers: {},
+      });
+    };
+
+    var getWarrior = function (warrior) {
+      return dojo.xhrGet({
+        content: {name: warrior},
+        url: 'http://localhost:8001/show',
+        handleAs: 'json',
+        headers: {},
+      });
+    };
+
+    var Grid = dojo.declare('Grid', null, {
+      constructor: function (kw) {
+        this.core = new Core(kw);
+        this.warriors = [];
+        this.width = 1000;
+        this.height = 800;
+        this.paper = Raphael(50, 50, this.width, this.height);
+        this.grid = [];
+        this.gridSize = Math.sqrt(
+          this.width * this.height / this.core.coresize
+        );
+        this._initialized = false;
+      },
+      draw: function () {
+        if (!this._initialized) {
+          this.initialize();
+        }
+        for (var i in this.core.core) {
+          var inst = this.core.core[i];
+          var color = this._color(inst);
+          this.grid[i].attr({fill: color});
+
+        }
+      },
+      start: function () {
+        this.core.loadWarriors(this.warriors);
+      },
+      runOnce: function (dbg) {
+        this.core.runOnce(dbg);
+        this.draw();
+      },
+      initialize: function () {
+        this.core.initialize();
+        for (var i in this.core.core) {
+          var pos = this._position(i);
+          this.grid.push(this.paper.rect(
+            pos[0], pos[1], this.gridSize - 1, this.gridSize - 1
+          ));
+          this.grid[i].attr({fill: '#000'});
+        }
+        this._initialized = true;
+      },
+      _position: function (i) {
+        var cols = Math.floor(this.width / this.gridSize);
+        var rows = Math.floor(this.height / this.gridSize);
+
+        var col = i % cols;
+        var row = Math.floor(i / cols);
+        return [col * this.gridSize, row * this.gridSize];
+      },
+      _color: function (inst) {
+        if (inst[CMD] == DAT) return '#000';
+        return '#888';
+      },
+    });
+
+    CORE = null;
+
+    var loadWarrior = function (warrior) {
+      console.log('Loading warrior: ' + warrior.name);
+      CORE.warriors.push(new Warrior(
+        warrior.name, warrior.offset, warrior.instructions
+      ));  
+    }
+
+    dojo.addOnLoad(function () {
+      CORE = new Grid();
+
+      var warriorsD = listWarriors();
+      var sel = dojo.byId('available');
+
+      dojo.connect(sel, 'onchange', function (evt) {
+        var warriorD = getWarrior(evt.target.value);
+        dojo.when(warriorD, function (warrior) {
+          loadWarrior(warrior);
+        });
+      });
+
+      dojo.when(warriorsD, function (warriors) {
+        dojo.forEach(warriors, function (warrior) {
+          dojo.create('option', {value: warrior, innerHTML: warrior}, sel);
+        });
+      });
+
+      CORE.draw();
+    });
+  </script>
+</head>
+<body>
+  <select id="available"></select>
+</body>
+</html>

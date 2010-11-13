@@ -44,7 +44,10 @@ var ROUTES = {
 }
 
 var notFound = function (response) {
-  response.writeHead(404);
+  response.writeHead(404, {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'X-Requested-With',
+  });
   response.end();
 };
 
@@ -64,7 +67,9 @@ var server = http.createServer(function (request, response) {
     var out = JSON.stringify(rv);
     response.writeHead(200, {
       'Content-Length': out.length,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'X-Requested-With',
     });
     response.write(out);
     response.end();
