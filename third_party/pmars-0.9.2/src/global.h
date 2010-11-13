@@ -412,7 +412,8 @@ extern int score(int warnum);
 extern void sort_by_score(int *idxV, int *scrV);
 extern int deaths(int warnum);
 extern void results(FILE * outp);
-extern void sort_by_score();
+// NOTE(termie): removed because of redefinition error
+//extern void sort_by_score();
 extern void Exit(int code);
 extern void reset_regs(void);
 extern void set_reg(char regChr, long val);

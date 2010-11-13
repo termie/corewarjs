@@ -64,7 +64,7 @@ void _cdecl sighandler(int);
 #endif
 
 #ifdef NEW_STYLE
-void    init(void);
+void    _ignored_init(void);
 extern void results(FILE * outp);
 void    body(void);
 void    Exit(int);
@@ -79,7 +79,7 @@ void    sighandler(int dummy);
 extern void end_curses(void);
 #endif
 #else
-void    init();
+void    _ignored_init();
 extern void results();
 void    body();
 void    Exit();
@@ -159,8 +159,9 @@ decode_vopt(option)
 }
 #endif
 
+// NOTE(termie): renamed so I can use my own init
 void
-init()
+_ignored_init()
 {
   INITIALINST.opcode = (FIELD_T) DAT *8 + (FIELD_T) mF;
   INITIALINST.A_mode = INITIALINST.B_mode = (FIELD_T) DIRECT;
@@ -276,8 +277,9 @@ Exit(errorcode)
 #endif
 }
 
+// NOTE(termie): renamed so that I can use my own main
 int
-main(argc, argv)
+_ignored_main(argc, argv)
   int     argc;
   char  **argv;
 {
