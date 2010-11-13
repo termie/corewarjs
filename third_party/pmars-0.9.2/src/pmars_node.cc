@@ -4,8 +4,12 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <node.h>
 #include <v8.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 
 extern "C" {
 	#include "config.h"
@@ -13,8 +17,11 @@ extern "C" {
  	#include "asm.h"
 }
 
+extern char *unknown, *anonymous;
+
 using namespace v8;
 using namespace node;
+using namespace std;
 
 typedef mem_struct mem_st;
 
@@ -63,9 +70,31 @@ class Assembler {
       coreSize = DEFAULTCORESIZE;
       instrLim = DEFAULTINSTRLIM;
 
-      int ass = assemble(*filename, warriorNum);
-      Local<Value> rv = assembler->Disassemble(warriorNum);
-      return rv;
+      Local<Value> rv;
+      int status;
+      
+      // pmars has a habit of calling exit if it runs into errors
+      // so we need to fork it off
+      pid_t pID = vfork();
+      if (pID == 0) {
+        int ass = assemble(*filename, warriorNum);
+        rv = assembler->Disassemble(warriorNum);
+        _exit(0);
+      } else if (pID < 0) {
+        exit(1);
+      } else {
+        wait(&status);
+        if (WIFEXITED(status)) {
+          if (WEXITSTATUS(status) != 0) {
+            return Undefined();
+          }
+        }
+      }
+
+      // pmars also doesn't really clean up after itself much since it expects
+      // to exit right away.
+      memset(&warrior[warriorNum], 0, sizeof warrior[warriorNum]);
+      return scope.Close(rv);
     }
 
   private:
@@ -85,7 +114,7 @@ class Assembler {
 
       rv->Set(String::New("offset"), Integer::New(offset));
       rv->Set(String::New("instructions"), instructions);
-
+      rv->Set(String::New("name"), String::New(warrior[warriorNum].name));
 
       for (i = 0; i < n; ++i) {
         instructions->Set(i,

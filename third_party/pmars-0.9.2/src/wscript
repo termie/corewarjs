@@ -21,7 +21,7 @@ def build(bld):
                 ' clparse.c global.c token.c'
                 ' str_eng.c').split(),
       target = 'pmars',
-      defines = ['EXT94'],
+      defines = ['EXT94', 'SERVER'],
       ccflags = ['-O'],
       
       )

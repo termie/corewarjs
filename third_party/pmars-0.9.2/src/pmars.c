@@ -273,7 +273,7 @@ Exit(errorcode)
     svga_display_close(0);
   fflush(stdout);
 #endif
-  exit(SWITCH_Q >= 0 ? returninfo() : errorcode);
+  _exit(SWITCH_Q >= 0 ? returninfo() : errorcode);
 #endif
 }
 
