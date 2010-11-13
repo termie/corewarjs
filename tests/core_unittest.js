@@ -1,8 +1,6 @@
 
-require.paths.unshift('./third_party/node-unittest/lib');
-
 var unittest = require('unittest');
-var c = require('corewars');
+var c = require('corewar');
 
 
 var WarriorTestImp1 = new c.Warrior(
