@@ -1,3 +1,6 @@
 [submodule "third_party/node-unittest"]
 	path = third_party/node-unittest
 	url = git://github.com/termie/node-unittest.git
+[submodule "third_party/Socket.IO-node"]
+	path = third_party/Socket.IO-node
+	url = git://github.com/LearnBoost/Socket.IO-node.git
