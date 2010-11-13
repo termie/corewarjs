@@ -60,11 +60,9 @@
    GRAPHX and SERVER are mutually exclusive.
    ******************************************************************** */
 
-/*
 #ifndef SERVER
 #define SERVER
 #endif
-*/
 
 /* ********************************************************************
    SMALLMEM: makes all core addresses 16 bits wide as opposed to the default
