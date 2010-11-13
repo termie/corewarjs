@@ -2,9 +2,7 @@
 require.paths.unshift('./third_party/node-unittest/lib');
 
 var unittest = require('unittest');
-var assert = require('assert');
-var sys = require('sys');
-var c = require('./core');
+var c = require('corewars');
 
 
 var WarriorTestImp1 = new c.Warrior(
@@ -33,5 +31,4 @@ CoreBasicTestCase.prototype.testLoadWarriors = function () {
   core.loadWarriors([WarriorTestImp1, WarriorTestImp2]);
 };
 
-var testcase = new CoreBasicTestCase();
-testcase.run();
+exports.CoreBasicTestCase = CoreBasicTestCase;
