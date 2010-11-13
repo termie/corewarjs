@@ -1,0 +1,51 @@
+                    A cdb primer
+                    ~~~~~~~~~~~~
+The pMARS debugger cdb may be a bit daunting at first because of the
+sheer number of commands. All you really need to know to get started
+however are a few basic commands: list, step, go, continue, trace,
+untrace and most important, help :-).
+
+Cdb has a command-driven interface for portability reasons, but you 
+can assign DOS function and extended keys to commonly used commands 
+or command sequences. Read the pMARS documentation to find out more 
+about this and many advanced features not covered here.
+
+"List" lets you view core addresses. E.g. "list 100" displays address
+100, and "list 0,9" lists the first 10 addresses. You can abbreviate
+the word "list" to a single letter or drop it entirely, i.e. "0,9"
+for the last example. If you start a number with a plus or minus, it
+is taken to be relative to the last address displayed: "-1,-20"
+displays 20 addresses in the backward direction, and if you keep
+hitting <enter> this becomes a convenient way to scroll through core.
+
+The special symbols A and B hold the values of the A and B-field of 
+the instruction displayed last: "list +B" shows the address the 
+B-field is pointing to; enter "list +B" again (or just <enter>) and 
+you have the address of the original instruction is pointing to in 
+indirect addressing mode. Another useful symbol is PC which holds the 
+address of the instruction about to be executed; "l pc" and you're 
+back to where you started after foraging through core.
+
+"Step" executes the next instruction in the process queue and
+immediately returns to the cdb prompt after displaying the following
+instruction. If you're not interested in what the other warrior is
+doing, enter "skip 1".
+
+"Go" executes instructions until either a trace point is executed
+(see below) or until the end of the round for "post-mortem"
+debugging. "Continue" skips past trace points and end of rounds,
+although you can still enter cdb if you hit "d" in the DOS display
+version, Control-C in the UNIX version or any key in the DOS
+no-display version. If you enter "go 7", execution will resume with
+address 7. This comes in handy, e.g. if you are debugging a scanner,
+put a trace after the scanning portion and want to resume execution
+without actually planting a bomb. This works with "step" and
+"continue" as well.
+
+"Trace" puts a trace point on an address or a range of addresses;
+"untrace" removes trace points. These commands take the same
+address or address range as "list". By default, trace points are
+copied along with the instruction by "MOV.I". This means you can
+trace the SPL bomb of your scanner and reenter the debugger as soon
+as the opponent executes the bomb. If you don't want trace points to
+be copied, enter the command "moveable off".

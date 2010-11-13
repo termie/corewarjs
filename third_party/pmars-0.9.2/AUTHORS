@@ -1,0 +1,17 @@
+Authors
+-------
+
+    pMARS is brought to you by:
+
+    Albert Ma (ama@athena.mit.edu)
+    Nandor Sieben (nandor.sieben@asu.edu)
+    Stefan Strack (stst@vuse.vanderbilt.edu)
+    Mintardjo Wangsaw (wangsawm@csos.orst.edu)
+
+    Alex Macaulay (macaulay@mundil.cs.mu.oz.au) wrote the Macintosh
+    front-end. Martin Maierhofer (m.maierhofer@ieee.org) contributed the
+    code for the X-Windows and the linux SVGA displays. Nathan Summers
+    (00ncsummers@bsuvc.bsu.edu) ported pMARS to VMS. Ken Espiritu provided
+    an optimized version of sim.c which runs fast on x86 machines. Ilmari
+    Karonen (iltzu@sci.fi) added the -P option and various improvements.
+

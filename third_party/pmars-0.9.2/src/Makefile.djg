@@ -1,0 +1,50 @@
+# makefile for DJGPP (GCC for DOS)
+CC = gcc
+# Configuration options:
+#
+# No.   Name            Incompatible with   Description
+# (1)   -DSERVER        2                   disables cdb debugger (koth server 
+#                                           version)
+# (2)   -DGRAPHX        1                   enables platform specific core 
+#                                           graphics
+# (3)   -DEXT94                             ICWS'94 + SEQ,SNE,NOP,*,{,}
+# (4)   -DSMALLMEM                          16-bit addresses, less memory
+# (5)   -DPERMUTATE                         enables -P switch
+CFLAGS = -O2 -m486 -DGRAPHX -DEXT94 -DPERMUTATE
+# only tested with PDCurses (-lcurses)
+LIB = -lgrx -lpc
+
+.SUFFIXES: .o .c
+
+MAINFILE = pmars
+
+HEADER = global.h config.h asm.h sim.h 
+OBJ1 = pmars.o asm.o eval.o disasm.o cdb.o sim.o pos.o
+OBJ2 = clparse.o global.o token.o
+OBJ3 = str_eng.o
+
+ALL: flags $(MAINFILE)
+
+flags:
+	@echo Making $(MAINFILE) with compiler flags $(CFLAGS)
+
+$(MAINFILE): $(OBJ1) $(OBJ2) $(OBJ3)
+    @echo Linking $(MAINFILE)
+    @$(CC) -o $(MAINFILE) $(OBJ1) $(OBJ2) $(OBJ3) $(LIB)
+    @strip $(MAINFILE)
+    @aout2exe $(MAINFILE)
+    @echo done
+
+
+token.o asm.o disasm.o: asm.h
+
+sim.o cdb.o pos.o disasm.o: sim.h
+
+sim.o: curdisp.c alldisp.c uidisp.c gtdisp.c grxdisp.c xgraphio.c
+
+$(OBJ1) $(OBJ2) $(OBJ3): makefile config.h global.h
+
+.c.o:
+	@echo Compiling $*.o 
+	@$(CC) $(CFLAGS) -c $*.c
+

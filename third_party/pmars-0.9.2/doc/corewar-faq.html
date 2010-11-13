@@ -1,0 +1,1759 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Core War Frequently Asked Questions (rec.games.corewar
+FAQ)</title>
+<meta name="author" content="Anton Marsden">
+<meta name="copyright" content="&copy; 2000 Anton Marsden">
+<meta name="keywords" content=
+"game, programming, core, war, koth, virus, corewar, robot">
+<style type="text/css"><!--
+  BODY { color: black; background: white; }
+  A:link { color: blue; text-decoration: none; }
+  A:visited { color: purple; text-decoration: none; }
+  A:active { color: aqua; text-decoration: none; }
+  H1 { text-align: center; }
+  CODE { font-weight: bold; }
+  .code88, .code94 { color: navy; font-weight: bold; }
+  .caution { color: red; font-weight: bold; }
+  .comment { color: green; }
+  .command { color: green; }
+  .label { color: green; }
+  .macro { color: navy; font-weight: bold; }
+  P { text-align: justify; }
+  LI { text-align: justify; }
+  DT { font-weight: bold; }
+  TABLE { background: white; }
+--></style>
+</head>
+<body>
+<h1>Core War Frequently Asked Questions (rec.games.corewar FAQ)</h1>
+
+<p>These are the Frequently Asked Questions (and answers) from the
+Usenet newsgroup <a href="news:rec.games.corewar">
+rec.games.corewar</a>. A <a href= 
+"ftp://rtfm.mit.edu/pub/usenet/news.answers/games/corewar-faq">
+plain text</a> version of this document is posted every two weeks.
+The latest hypertext version is available at <a href= 
+"http://homepages.paradise.net.nz/~anton/cw/corewar-faq.html">
+http://homepages.paradise.net.nz/~anton/cw/corewar-faq.html</a> and
+the latest plain text version is available at <a href= 
+"http://homepages.paradise.net.nz/~anton/cw/corewar-faq.txt">
+http://homepages.paradise.net.nz/~anton/cw/corewar-faq.txt</a>.</p>
+
+<p>This document is currently being maintained by <a href= 
+"mailto:anton@paradise.net.nz">Anton Marsden
+(anton@paradise.net.nz)</a>.</p>
+
+<p>
+<!-- hhmts start -->
+Last modified: Mon Aug 21 22:22:27 NZST 2000
+<!-- hhmts end -->
+</p>
+
+<hr>
+<h2>To Do</h2>
+
+<ul>
+
+<li>Change "silk" definition - it is possible to write a silk in ICWS '88. Get some example code</li>
+
+<li>Make question 17 easier to understand. Add a state
+diagram?</li>
+
+<li>Add info about infinite hills, related games (C-Robots,
+Tierra?, ...)</li>
+
+<li>New question: How do I know if my warrior is any good? Refer to
+beginners' benchmarks, etc.</li>
+
+<li>Would very much like someone to compile a collection of the
+"revolutionary" warriors so that beginners can see how the game has
+developed over the years. <a href="mailto:anton@paradise.net.nz">
+Mail me</a> if interested.</li>
+</ul>
+
+<hr>
+<h2>What's New</h2>
+
+<ul>
+<li>Updated <a href="#Silk">silk</a> definition.</li>
+
+<li>Minor URL changes.</li>
+
+<li>Added the online location of Dewdney's articles</li>
+
+<li>Changed ftp://www.koth.org/corewar/ to ftp://www.koth.org/pub/corewar/</li>
+
+<li>Changed primary location of FAQ (again!)</li>
+
+<li>Changed Philip Kendall's home page address.</li>
+
+<li>Updated list server information</li>
+</ul>
+
+<hr>
+<h2><a name="TOC">Table of Contents</a></h2>
+
+<p><ol>
+<li><a name="TOC_WhatIsCoreWar" href="#WhatIsCoreWar">What is Core
+War</a></li>
+
+<li><a name="TOC_IsItCoreWar" href="#IsItCoreWar">Is it "Core War"
+or "Core Wars"?</a></li>
+
+<li><a name="TOC_WhereCanIFind" href="#WhereCanIFind">Where can I
+find more information about Core War?</a></li>
+
+<li><a name="TOC_CoreWarHasChanged" href="#CoreWarHasChanged">Core
+War has changed since Dewdney's articles. Where do I get a copy of
+the current instruction set?</a></li>
+
+<li><a name="TOC_WhatIsICWS94" href="#WhatIsICWS94">What is
+ICWS'94? Which simulators support ICWS'94?</a></li>
+
+<li><a name="TOC_WhatIsTheICWS" href="#WhatIsTheICWS">What is the
+ICWS?</a></li>
+
+<li><a name="TOC_WhatIsCoreWarrior" href="#WhatIsCoreWarrior">What
+is <cite>Core Warrior</cite>?</a></li>
+
+<li><a name="TOC_WhereAreTheArchives" href="#WhereAreTheArchives">
+Where are the Core War archives?</a></li>
+
+<li><a name="TOC_CoreWarSystems" href="#CoreWarSystems">Where can I
+find a Core War system for ...?</a></li>
+
+<li><a name="TOC_WarriorCode" href="#WarriorCode">Where can I find
+warrior code?</a></li>
+
+<li><a name="TOC_IDoNotHaveFTP" href="#IDoNotHaveFTP">I do not have
+FTP. How do I get all this great stuff?</a></li>
+
+<li><a name="TOC_IDoNotHaveAccess" href="#IDoNotHaveAccess">I do
+not have access to Usenet. How do I post and receive news?</a></li>
+
+<li><a name="TOC_WWWSites" href="#WWWSites">Are there any Core War
+related WWW sites?</a></li>
+
+<li><a name="TOC_WhatIsKotH" href="#WhatIsKotH">What is KotH? How
+do I enter?</a></li>
+
+<li><a name="TOC_IsItDAT0" href="#IsItDAT0">Is it <code class= 
+"code88">DAT 0, 0</code> or <code class="code88">DAT #0, #0</code>?
+How do I compare to core?</a></li>
+
+<li><a name="TOC_HowDoesSLTwork" href="#HowDoesSLTwork">How does
+<code class="code88">SLT</code> (Skip if Less Than) work?</a></li>
+
+<li><a name="TOC_Evaluation" href="#Evaluation">What is the
+difference between in-register and in-memory evaluation?</a></li>
+
+<li><a name="TOC_pSpace" href="#pSpace">What is P-space?</a></li>
+
+<li><a name="TOC_assert" href="#assert">What does "Missing ;assert
+.." in my message from KotH mean?</a></li>
+
+<li><a name="TOC_codeformat" href="#codeformat">How should I format
+my code?</a></li>
+
+<li><a name="TOC_resources" href="#resources">Are there any other
+Core War related resources I should know about?</a></li>
+
+<li><a name="TOC_WhatDoesMean" href="#WhatDoesMean">What does
+(expression or term of your choice) mean?</a></li>
+
+<li><a name="TOC_OtherQuestions" href="#OtherQuestions">Other
+questions?</a></li>
+</ol></p>
+
+<hr>
+<h2><a name="WhatIsCoreWar">1. What is Core War?</a></h2>
+
+<p>Core War is a game played by two or more programs (and vicariously
+by their authors) written in an assembly language called Redcode
+and run in a virtual computer called MARS (for Memory Array Redcode
+Simulator). The object of the game is to cause all processes of the
+opposing program to terminate, leaving your program in sole
+posession of the machine.</p>
+
+<p>There are Core War systems available for most computer
+platforms. Redcode has been standardised by the <a href= 
+"#WhatIsTheICWS">ICWS</a>, and is therefore transportable between
+all standard Core War systems.</p>
+
+<p>The system in which the programs run is quite simple. The <em>
+core</em> (the memory of the simulated computer) is a continuous
+array of instructions, empty except for the competing programs. The
+core wraps around, so that after the last instruction comes the
+first one again.</p>
+
+<p>There are no absolute addresses in Core War. That is, the
+address <code>0</code> doesn't mean the first instruction in the
+memory, but the instruction that contains the address <code>
+0</code>. The next instruction is 1, and the previous one obviously
+<code>-1</code>. However, all numbers are treated as positive, and
+are in the range <code>0</code> to <code>CORESIZE-1</code> where
+<code>CORESIZE</code> is the amount of memory locations in the core
+- this means that <code>-1</code> would be treated as <code>
+CORESIZE-1</code> in any arithmetic operations, eg. <code>3218 +
+7856 = (3218 + 7856) <strong>mod</strong> CORESIZE</code>. Many
+people get confused by this, and it is particularly important when
+using the <code class="code88"><a href="#HowDoesSLTwork">
+SLT</a></code> instruction. Note that the source code of a program
+can still contain negative numbers, but if you start using
+instructions like <code class="code88">DIV #-2, #5</code> it is
+important to know what effect they will have when executed.</p>
+
+<p>The basic unit of memory in Core War is one instruction. Each
+Redcode instruction contains three parts:</p>
+
+<ul>
+<li>the opcode</li>
+
+<li>the source address (a.k.a. the A-field)</li>
+
+<li>the destination address (a.k.a. the B-field)</li>
+</ul>
+
+<p>The execution of the programs is equally simple. The MARS executes
+one instruction at a time, and then proceeds to the next one in the
+memory, unless the instruction explicitly tells it to jump to
+another address. If there is more than one program running, (as is
+usual) the programs execute alternately, one instruction at a time.
+The execution of each instruction takes the same time, one cycle,
+whether it is <code class="code88">MOV</code>, <code class="code88">DIV</code>
+or even <code class="code88">DAT</code> (which kills the process).</p>
+
+<p>Each program may have several processes running. These processes
+are stored in a task queue. When it is the program's turn to
+execute an instruction it dequeues a process and executes the
+corresponding instruction. Processes that are not killed during the
+execution of the instruction are put back into the task queue.
+Processes created by a <code class="code88">SPL</code> instruction
+are added to the task queue <em>after</em> the creating process is
+put back into the task queue.</p>
+
+<p><a href="#TOC_WhatIsCoreWar">[ToC]</a></p>
+
+<hr>
+<h2><a name="IsItCoreWar">2. Is it "Core War" or "Core
+Wars"?</a></h2>
+
+<p>Both terms are used. Early references were to Core War. Later
+references seem to use Core Wars. I prefer "Core War" to refer to
+the game in general, "core wars" to refer to more than one specific
+battle.</p>
+
+<p><a href="#TOC_IsItCoreWar">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhereCanIFind">3. Where can I find more information
+about Core War?</a></h2>
+
+<p>Core War was first described in the <cite>Core War
+Guidelines</cite> of March, 1984 by D. G. Jones and A. K. Dewdney
+of the Department of Computer Science at The University of Western
+Ontario (Canada). Dewdney wrote several "Computer Recreations"
+articles in <cite>Scientific American</cite> which discussed Core
+War, starting with the May 1984 article. Those articles are
+contained in two anthologies:</p>
+
+<table border="1">
+<tr>
+<th>Author</th>
+<th>Title</th>
+<th>Published</th>
+<th>ISBN</th>
+<th>Library of Congress Call Number</th>
+</tr>
+
+<tr>
+<td>Dewdney, A. K.</td>
+<td>The Armchair Universe: An Exploration of Computer Worlds</td>
+<td>New York: W. H. Freeman &copy; 1988</td>
+<td>0-7167-1939-8</td>
+<td>QA76.6 .D517 1988</td>
+</tr>
+
+<tr>
+<td>Dewdney, A. K.</td>
+<td>The Magic Machine: A Handbook of Computer Sorcery</td>
+<td>New York: W. H. Freeman &copy; 1990</td>
+<td>0-7167-2125-2 (Hardcover), 0-7167-2144-9 (Paperback)</td>
+<td>QA76.6 .D5173 1990</td>
+</tr>
+</table>
+
+<p>A.K. Dewdney's articles are still the most readable introduction
+to Core War, even though the Redcode dialect described in there is
+no longer current. You can view a scanned version of the articles at
+<a href="http://www.koth.org/info/sciam/">
+http://www.koth.org/info/sciam/</a>. For those who are interested,
+Dewdney has a home page at
+<a href="http://www.csd.uwo.ca/faculty/akd/">
+http://www.csd.uwo.ca/faculty/akd/</a>.</p>
+
+<p><a href="#TOC_WhereCanIFind">[ToC]</a></p>
+
+<hr>
+<h2><a name="CoreWarHasChanged">4. Core War has changed since
+Dewdney's articles. Where do I get a copy of the current
+instruction set?</a></h2>
+
+<p>A draft of the official standard (ICWS'88) is available as <a href= 
+"ftp://www.koth.org/pub/corewar/documents/standards/redcode-icws-88.Z">
+ftp://www.koth.org/pub/corewar/documents/standards/redcode-icws-88.Z</a>.
+This document is formatted awkwardly and contains ambiguous
+statements. For a more approachable intro to Redcode, take a look
+at Mark Durham's tutorials, <a href= 
+"ftp://www.koth.org/pub/corewar/documents/tutorial.1.Z">
+ftp://www.koth.org/pub/corewar/documents/tutorial.1.Z</a> and <a href= 
+"ftp://www.koth.org/pub/corewar/documents/tutorial.2.Z">
+ftp://www.koth.org/pub/corewar/documents/tutorial.2.Z</a>.</p>
+
+<p>Steven Morrell has prepared a more practically oriented Redcode
+tutorial that discusses different warrior classes with lots of
+example code. This and various other tutorials can be found at <a
+href="http://www.koth.org/info.html">
+http://www.koth.org/info.html</a>.</p>
+
+<p>Even though ICWS'88 is still the "official" standard, you will
+find that most people are playing by <a href="#WhatIsICWS94">
+ICWS'94 draft</a> rules and extensions.</p>
+
+<p><a href="#TOC_CoreWarHasChanged">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhatIsICWS94">5. What is ICWS'94? Which simulators
+support ICWS'94?</a></h2>
+
+<p>There is an ongoing discussion about future enhancements to the
+Redcode language. A proposed new standard, dubbed ICWS'94, is
+currently being evaluated. A major change is the addition of
+"instruction modifiers" that allow instructions to modify A-field,
+B-field or both. Also new is a new addressing modes and
+unrestricted opcode and addressing mode combination ("no illegal
+instructions"). ICWS'94 is backwards compatible; i.e. ICWS'88
+warriors will run correctly on an ICWS'94 system. Take a look at
+the ICWS'94 draft at <a href= 
+"ftp://www.koth.org/pub/corewar/documents/icws94.0202.Z">
+ftp://www.koth.org/pub/corewar/documents/icws94.0202.Z</a> for more
+information. There is a HTML version of this document available at
+<a href="http://www.koth.org/info/icws94.html">
+http://www.koth.org/info/icws94.html</a>. You can try out the new
+standard by submitting warriors to the '94 hills of the <a href= 
+"#WhatIsKotH">KotH servers</a>. Two corewar systems currently
+support ICWS'94, <a href="http://www.koth.org/pmars.html">pMARS</a>
+(many platforms) and Redcoder (Mac), both available at <a href= 
+"ftp://www.koth.org/pub/corewar">ftp://www.koth.org/pub/corewar</a>. Note
+that Redcoder only supports a subset of ICWS'94.</p>
+
+<p><a href="#TOC_WhatIsICWS94">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhatIsTheICWS">6. What is the ICWS?</a></h2>
+
+<p>About one year after Core War first appeared in <cite>Scientific
+American</cite>, the "International Core War Society" (ICWS) was
+established. Since that time, the ICWS has been responsible for the
+creation and maintenance of Core War standards and the running of
+Core War tournaments. There have been six annual tournaments and
+two standards (ICWS'86 and ICWS'88). The ICWS is no longer active.</p>
+
+<p><a href="#TOC_WhatIsTheICWS">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhatIsCoreWarrior">7. What is <cite>Core
+Warrior</cite>?</a></h2>
+
+<p>Following in the tradition of the <cite>Core War News
+Letter</cite>, <cite>Push Off</cite>, and <cite>The 94
+Warrior</cite>, <cite>Core Warrior</cite> is a newsletter about
+strategies and current standings in Core War. Started in October
+1995, back issues of <cite>Core Warrior</cite> (and the other
+newsletters) are available at <a href= 
+"http://para.inria.fr/~doligez/corewar/">
+http://para.inria.fr/~doligez/corewar/</a>. There is also a <cite>
+Core Warrior</cite> index page at <a href= 
+"http://www.kendalls.demon.co.uk/pak21/corewar/warrior.html">
+http://www.kendalls.demon.co.uk/pak21/corewar/warrior.html</a>
+which has a summary of the contents of each issue of <cite>Core
+Warrior</cite>. Many of the earlier issues contain useful
+information for beginners.</p>
+
+<p><a href="#TOC_WhatIsCoreWarrior">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhereAreTheArchives">8. Where are the Core War
+archives?</a></h2>
+
+<p>Many documents such as the guidelines and the ICWS standards along
+with previous tournament Redcode entries and complete Core War
+systems are available via anonymous ftp from <a href= 
+"ftp://ftp.csua.berkeley.edu/pub/corewar">
+ftp://ftp.csua.berkeley.edu/pub/corewar</a>. Also, most of past
+rec.games.corewar postings (including Redcode source listings) are
+archived there. <a href="mailto:blojo@csua.berkeley.edu">Jon Blow
+(blojo@csua.berkeley.edu)</a> is the archive administrator. When
+uploading to /pub/corewar/incoming, ask Jon to move your upload to
+the appropriate directory and announce it on the net.</p>
+
+<p>This site is mirrored at:</p>
+
+<ul>
+<li><a href="ftp://www.koth.org/pub/corewar/">
+ftp://www.koth.org/pub/corewar/</a></li>
+<li><a href= 
+"ftp://ftp.inria.fr/INRIA/Projects/para/doligez/cw/mirror">
+ftp://ftp.inria.fr/INRIA/Projects/para/doligez/cw/mirror</a></li>
+</ul>
+
+<p>The <a href= 
+"ftp://rtfm.mit.edu/pub/usenet/news.answers/games/corewar-faq">
+plain text</a> version of this FAQ is automatically archived by <a
+href="news:news.answers">news.answers</a> (but this version is
+probably out-of-date).</p>
+
+<p><a href="#TOC_WhereAreTheArchives">[ToC]</a></p>
+
+<hr>
+<h2><a name="CoreWarSystems">9. Where can I find a Core War system
+for . . . ?</a></h2>
+
+<p>Core War systems are available via anonymous FTP from www.koth.org
+in the <a href="ftp://www.koth.org/pub/corewar/systems">
+corewar/systems</a> directory. Currently, there are UNIX, IBM
+PC-compatible, Macintosh, and Amiga Core War systems available
+there. It is a good idea to check <a href= 
+"ftp://www.koth.org/pub/corewar/incoming">
+ftp://www.koth.org/pub/corewar/incoming</a> for program updates first.</p>
+
+<p><span class="caution">CAUTION!</span> There are many, many Core
+War systems available which are <strong>NOT</strong> ICWS'88 (or
+even ICWS'86) compatible available at various archive sites other
+than www.koth.org. Generally, the older the program - the less
+likely it will be ICWS compatible.</p>
+
+<p>If you are looking for an <a href="#WhatIsICWS94">ICWS'94</a>
+simulator, get <a href="http://www.koth.org/pmars.html">pMARS</a>,
+which is available for many platforms and can be downloaded
+from:</p>
+
+<ul>
+<li><a href="ftp://ftp.csua.berkeley.edu/pub/corewar">
+ftp://ftp.csua.berkeley.edu/pub/corewar</a> (original site)</li>
+
+<li><a href="ftp://www.koth.org/corewar">
+ftp://www.koth.org/corewar</a> (koth.org mirror)</li>
+
+<li><a href= 
+"ftp://ftp.inria.fr/INRIA/Projects/para/doligez/cw/mirror">
+ftp://ftp.inria.fr/INRIA/Projects/para/doligez/cw/mirror</a>
+(Planar mirror)</li>
+
+<li><a href="http://www.nc5.infi.net/~wtnewton/corewar/">
+http://www.nc5.infi.net/~wtnewton/corewar/</a> (Terry Newton)</li>
+
+<li><a href="ftp://members.aol.com/ofechner/corewar">
+ftp://members.aol.com/ofechner/corewar</a> (Fechter)</li>
+</ul>
+
+<p>Notes:</p>
+
+<ul>
+<li>If you have trouble running pMARS with a graphical display
+under Win95 then check out <a href=
+"http://www.koth.org/pmars.html">http://www.koth.org/pmars.html</a>
+which should have a pointer to the latest compilation of pMARS for
+this environment.</li>
+
+<li>RPMs for the Alpha, PowerPC, Sparc and i386 can be found at <a
+href=
+"ftp://ftp.inria.fr/INRIA/Projects/para/doligez/cw/pmars-rpm/">
+ftp://ftp.inria.fr/INRIA/Projects/para/doligez/cw/pmars-rpm/</a></li>
+</ul>
+
+<p>Reviews of Core War systems would be greatly appreciated in the
+newsgroup and in the newsletter.</p>
+
+<p>Below is a not necessarily complete or up-to-date list of what's
+available at www.koth.org:</p>
+
+<table border="0">
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/MADgic41.lzh">
+MADgic41.lzh</a></td>
+<td>corewar for the Amiga, v4.1</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/MADgic4041.lzh">
+MAD4041.lzh</a></td>
+<td>older version?</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/MAD50B.lha">
+MAD50B.lha</a></td>
+<td>corewar for the Amiga, beta version 5.0</td>
+</tr>
+
+<tr>
+<td><a href=
+"ftp://www.koth.org/pub/corewar/systems/94/Redcoder-21.hqx">
+Redcoder-21.hqx</a></td>
+<td>corewar for the Mac, supports ICWS'88 and '94 (without
+extensions)</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/core-11.hqx">
+core-11.hqx</a></td>
+<td>corewar for the Mac</td>
+</tr>
+
+<tr>
+<td><a href= 
+"ftp://www.koth.org/pub/corewar/systems/core-wars-simulator.hqx">
+core-wars-simulator.hqx</a></td>
+<td>same as core-11.hqx?</td>
+</tr>
+
+<tr>
+<td><a href= 
+"ftp://www.koth.org/pub/corewar/systems/corewar_unix_x11.tar.Z">
+corewar_unix_x11.tar.Z</a></td>
+<td>corewar for UNIX/X-windows, ICWS'86 but not ICWS'88
+compatible</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/koth31.tar.Z">
+koth31.tar.Z</a></td>
+<td>corewar for UNIX/X-windows. This program ran the former KotH
+server at intel.com</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/koth.shar.Z">
+koth.shar.Z</a></td>
+<td>older version</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/kothpc.zip">
+kothpc.zip</a></td>
+<td>port of older version of KotH to the PC</td>
+</tr>
+
+<tr>
+<td><a href=
+"ftp://www.koth.org/pub/corewar/systems/88/deluxe20c.tar.Z">
+deluxe20c.tar.Z</a></td>
+<td>corewar for UNIX (broken X-windows or curses) and PC</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/mars.tar.Z">
+mars.tar.Z</a></td>
+<td>corewar for UNIX, likely not ICWS'88 compatible</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/icons.zip">
+icons.zip</a></td>
+<td>corewar icons for MS-Windows</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/tools/macrored.zip">
+macrored.zip</a></td>
+<td>a redcode macro-preprocessor (PC)</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/c88v49.zip">
+c88v49.zip</a></td>
+<td>PC corewar, textmode display</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/mars88.zip">
+mars88.zip</a></td>
+<td>PC corewar, graphics mode display</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/corwp302.zip">
+corwp302.zip</a></td>
+<td>PC corewar, textmode display, slowish</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/mercury2.zip">
+mercury2.zip</a></td>
+<td>PC corewar written in assembly, fast!</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/mtourn11.zip">
+mtourn11.zip</a></td>
+<td>tournament scheduler for mercury (req. 4DOS)</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/94/pmars08s.zip">
+pmars08s.zip</a></td>
+<td>portable system, ICWS'88 and '94, runs on UNIX, PC, Mac, Amiga.
+C source archive</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/94/pmars08s.tar.Z">
+pmars08s.tar.Z</a></td>
+<td>same as above</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/94/pmars08.zip">
+pmars08.zip</a></td>
+<td>PC executables with graphics display, req 386+</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/macpmars02.hqx">
+macpmars02.sit.hqx</a></td>
+<td>pMARS executable for Mac (port of version 0.2) buggy, no
+display</td>
+</tr>
+
+<tr>
+<td><a href= 
+"ftp://www.koth.org/pub/corewar/systems/94/MacpMARS1.99a.cpt.hqx">
+MacpMARS1.99a.cpt.hqx</a></td>
+<td>port of v0.8 for the Mac, with display and debugger</td>
+</tr>
+
+<tr>
+<td><a href= 
+"ftp://www.koth.org/pub/corewar/systems/94/MacpMARS1.0s.cpt.hqx">
+MacpMARS1.0s.cpt.hqx</a></td>
+<td>C source (MPW, ThinkC) for Mac frontend</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/incoming/pvms08.zip">
+pvms08.zip</a></td>
+<td>pMARS v0.8 for VMS build files/help (req. pmars08s.zip)</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/94/ApMARS03.lha">
+ApMARS03.lha</a></td>
+<td>pMARS executable for Amiga (port of version 0.3.1)</td>
+</tr>
+
+<tr>
+<td><a href="ftp://www.koth.org/pub/corewar/systems/88/wincor11.zip">
+wincor11.zip</a></td>
+<td>MS-Windows system, shareware ($15)</td>
+</tr>
+</table>
+
+<p><a href="#TOC_CoreWarSystems">[ToC]</a></p>
+
+<hr>
+<h2><a name="WarriorCode">10. Where can I find warrior
+code?</a></h2>
+
+<p>To learn the game, it is a good idea to study previously posted
+warrior code. The FTP archives have code in the <a href= 
+"ftp://www.koth.org/pub/corewar/redcode">
+ftp://www.koth.org/pub/corewar/redcode</a> directory. A clearly
+organized on-line warrior collection is available at the Core War
+<a href="#WWWSites">web sites (see below)</a>.</p>
+
+<p><a href="#TOC_WarriorCode">[ToC]</a></p>
+
+<hr>
+<h2><a name="IDoNotHaveFTP">11. I do not have FTP. How do I get all
+this great stuff?</a></h2>
+
+<p>There is an FTP email server at <a href= 
+"mailto:bitftp@pucc.princeton.edu">bitftp@pucc.princeton.edu</a>.
+ Send email with a subject and body text of
+"help" (without the quotes) for more information on its usage. Note
+that many FTP email gateways are shutting down due to abuse. To get
+a current list of FTP email servers, look at the <a name=
+"AccessFAQ"><cite>Accessing the Internet by E-mail FAQ</cite></a>
+posted to news.answers. If you don't have access to Usenet, you can
+retrieve this FAQ one of the following ways:</p>
+
+<p><ul>
+<li>Send mail to <a href="mailto:mail-server@rtfm.mit.edu">
+mail-server@rtfm.mit.edu</a> with the body containing "<code>send
+usenet/news.answers/internet-services/access-via-email</code>".</li>
+
+<li>Send mail to <a href="mailto:mailbase@mailbase.ac.uk">
+mailbase@mailbase.ac.uk</a> with the body containing "<code>send
+lis-iis e-access-inet.txt</code>".</li>
+</ul></p>
+
+<p><a href="#TOC_IDoNotHaveFTP">[ToC]</a></p>
+
+<hr>
+<h2><a name="IDoNotHaveAccess">12. I do not have access to Usenet.
+How do I post and receive news?</a></h2>
+
+<p>To receive rec.games.corewar articles by email, join the COREWAR-L
+list run on the Koth.Org list processor. To join, send the message</p>
+
+<p><blockquote>SUB COREWAR-L FirstName LastName</blockquote></p>
+
+<p>to <a href="mailto:listproc@koth.org">listproc@koth.org</a>. You
+can send mail to <a href="mailto:corewar-l@koth.org">
+corewar-l@koth.org</a> to post even if you are not a member of the
+list. Responsible for the listserver is <a href= 
+"mailto:ttsg@ttsg.com">Scott J. Ellentuch (ttsg@ttsg.com)</a>.</p>
+
+<p>Servers that allow you to post (but not receive) articles are
+available. Refer to the <a href="#AccessFAQ"><cite>Accessing the
+Internet by E-Mail FAQ</cite></a> for more information.</p>
+
+<p><a href="#TOC_IDoNotHaveAccess">[ToC]</a></p>
+
+<hr>
+<h2><a name="WWWSites">13. Are there any Core War related WWW
+sites?</a></h2>
+
+<p>You bet. Each of the two <a href="#WhatIsKoTH">KotH</a> sites sport
+a world-wide web server. Stormking's Core War page is <a href= 
+"http://www.koth.org/">http://www.koth.org</a>; pizza's is <a href= 
+"http://www.ecst.csuchico.edu/~pizza/koth">
+http://www.ecst.csuchico.edu/~pizza/koth</a> . Damien Doligez
+(a.k.a. Planar) has a web page that features convenient access to
+regular newsletters (<cite>Push Off</cite>, <cite>The '94
+Warrior</cite>, <a href="#WhatIsCoreWarrior"><cite>Core
+Warrior</cite></a>) and a well organized library of warriors: <a
+href="http://para.inria.fr/~doligez/corewar/">
+http://para.inria.fr/~doligez/corewar/</a>. Convenient for U.S.
+users, this site is also mirrored at <a href="http://www.koth.org">
+koth.org</a>.</p>
+
+<p><a href="#TOC_WWWSites">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhatIsKotH">14. What is KotH? How do I enter?</a></h2>
+
+<p>King Of The Hill (KotH) is an ongoing Core War tournament
+available to anyone with email. You enter by submitting via email a
+Redcode program (warrior) with special comment lines. You will
+receive a reply indicating how well your program did against the
+current top programs "on the hill".</p>
+
+<p>There are two styles of KotH tournaments, "classical" and
+"multi-warrior". The "classical" KotH is a one-on-one tournament,
+that is your warrior will play 100 battles against each of the 20
+other programs currently on the Hill. You receive 3 points for each
+win and 1 point for each tie. (The existing programs do not replay
+each other, but their previous battles are recalled.) All scores
+are updated to reflect your battles and all 21 programs are ranked
+from high to low. If you are number 21 you are pushed off the Hill,
+if you are higher than 21 someone else is pushed off.</p>
+
+<p>In "multi-warrior" KotH, all warriors on the hill fight each
+other at the same time. Score calculation is a bit more complex
+than for the one-on-one tournament. Briefly, points are awarded
+based on how many warriors survive until the end of a round. A
+warrior that survives by itself gets more points than a warrior
+that survives together with other warriors. Points are calculated
+from the formula <code>(W*W-1)/S</code>, where <code>W</code> is
+the total number of warriors and <code>S</code> the number of
+surviving warriors. The <a href="http://www.koth.org/pmars.html">
+pMARS documentation</a> has more information on multi-warrior
+scoring.</p>
+
+<p>The idea for an email-based Core War server came from <a href= 
+"mailto:davidlee@central.bldrdoc.gov">David Lee</a>. The original
+KotH was developed and run by William Shubert at Intel starting in
+1991, and discontinued after almost three years of service.
+Currently, KotHs based on Bill's UNIX scripts but offering a wider
+variety of hills are are running at two sites: <a href= 
+"mailto:koth@koth.org">koth@koth.org</a> is maintained by <a href= 
+"mailto:tuc@ttsg.com">Scott J. Ellentuch (tuc@ttsg.com)</a> and <a
+href="mailto:pizza@ecst.csuchico.edu">pizza@ecst.csuchico.edu</a>
+by <a href="mailto:sd@ecst.csuchico.edu">Thomas H. Davies
+(sd@ecst.csuchico.edu)</a>. Up until May '95, the two sites
+provided overlapping services, i.e. the some of the hill types were
+offered by both "pizza" and "stormking". To conserve resources, the
+different hill types are now divided up among the sites. The way
+you submit warriors to both KotHs is pretty much the same.
+Therefore, the entry rules described below apply to both "pizza"
+and "stormking" unless otherwise noted.</p>
+
+<h3>Entry Rules for King of the Hill Corewar</h3>
+
+<p><ul>
+<li>Write a corewar program. KotH is fully ICWS '94 compatible,
+EXCEPT that a comma (",") is required between two arguments.</li>
+
+<li>Put a line starting with "<code class=
+"command">;redcode</code>" (or "<code class=
+"command">;redcode-94</code>", etc., see below) at the top of your
+program. This <strong>MUST</strong> be the first line. Anything
+before it will be lost. If you wish to receive mail on every new
+entrant, use "<code class="command">;redcode verbose</code>".
+Otherwise you will only receive mail if a challenger makes it onto
+the hill. Use "<code class="command">;redcode quiet</code>" if you
+wish to receive mail only when you get shoved off the hill.<br>
+<br>
+ Additionally, adding "<code class="command">;name &lt;program
+name&gt;</code>" and "<code class="comment">;author &lt;your
+name&gt;</code>" will be helpful in the performance reports. Do
+<strong>NOT</strong> have a line beginning with "<code class= 
+"command">;address</code>" in your code; this will confuse the mail
+daemon and you won't get mail back. Using "<code class=
+"command">;name</code>" is mandatory on the Pizza hills.<br>
+<br>
+ In addition, it would be nice if you have lines beginning with
+"<code class="command">;strategy</code>" that describe the
+algorithm you use.<br>
+<br>
+ There are currently seven separate hills you can select by
+starting your program with <code class="command">
+;redcode-94</code>, <code class="command">;redcode-b</code>, <code
+class="command">;redcode-lp</code>, <code class="command">
+;redcode-x</code>, <code class="command">;redcode</code>, <code
+class="command">;redcode-94x</code> or <code class="command">
+;redcode-94m</code>. The former four run at "pizza", the latter
+three at "stormking". More information on these hills is listed
+below.</li>
+
+<li>Mail this file to <a href="mailto:koth@koth.org">
+koth@koth.org</a> or <a href="mailto:pizza@ecst.csuchico.edu">
+pizza@ecst.csuchico.edu</a>. "Pizza" requires a subject of
+"<code>koth</code>" (use the <code>-s</code> flag on most
+mailers).</li>
+
+<li>Within a few minutes you should get mail back telling you
+whether your program assembled correctly or not. If it did assemble
+correctly, sit back and wait; if not, make the change required and
+re-submit.</li>
+
+<li>In an hour or so you should get more mail telling you how your
+program performed against the current top 20 (or 10) programs. If
+no news arrives during that time, don't worry; entries are put in a
+queue and run through the tournament one at a time. A backlog may
+develop. Be patient.</li>
+</ul></p>
+
+<p>If your program makes it onto the hill, you will get mail every
+time a new program makes it onto the hill. If this is too much
+mail, you can use "<code class="command">;redcode[-??]
+quiet</code>" when you first mail in your program; then you will
+only get mail when you make it on the top 25 list or when you are
+knocked off. Using "<code class="command">;redcode[-??]
+verbose</code>" will give you even more mail; here you get mail
+every time a new challenger arrives, even if they don't make it
+onto the top 25 list.</p>
+
+<p>Often programmers want to try out slight variations in their
+programs. If you already have a program named "<code>foo
+V1.0</code>" on the hill, adding the line "<code class=
+"command">;kill foo</code>" to a new program will automatically
+bump <code>foo 1.0</code> off the hill. Just "<code class=
+"command">;kill</code>" will remove all of your programs when you
+submit the new one. The server kills programs by assigning an
+impossibly low score; it may therefore take another successful
+challenge before a killed program is actually removed from the
+hill.</p>
+
+<h4>Sample Entry</h4>
+
+<p><pre class="code88">
+<span class="command">;redcode
+;name Dwarf
+;author A. K. Dewdney
+;strategy Throw DAT bombs around memory, hitting every 4th memory cell.
+;strategy This program was presented in the first Corewar article.</span>
+bomb  DAT   #0
+dwarf ADD   #4,    bomb
+      MOV   bomb, @bomb
+      JMP   dwarf
+      END   dwarf          <span class=
+"comment">; Programs start at the first line unless
+                           ; an "END start" pseudo-op appears to indicate
+                           ; the first logical instruction.  Also, nothing
+                           ; after the END instruction will be assembled.</span>
+</pre></p>
+
+<p><table border="1">
+<tr>
+<th>Hill Name</th>
+<th>Hill Size</th>
+<th>Core Size</th>
+<th>Max. Processes</th>
+<th>Duration Before Tie</th>
+<th>Max. Entry Length</th>
+<th>Min. Distance</th>
+<th>Rounds Fought</th>
+<th>Instr. Set</th>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Pizza's ICWS '94 Draft Hill (Accessed with "<code
+class="command">;redcode-94</code>")</td>
+<td>25</td>
+<td>8000</td>
+<td>8000</td>
+<td>80000</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+<td align="LEFT">Extended ICWS '94 Draft</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Pizza's Beginner's Hill (Accessed with "<code
+class="command">;redcode-b</code>")</td>
+<td>25</td>
+<td>8000</td>
+<td>8000</td>
+<td>80000</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+<td align="LEFT">Extended ICWS '94 Draft</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Pizza's Experimental (Small) Hill (Accessed with
+"<code class="command">;redcode-x</code>")</td>
+<td>25</td>
+<td>800</td>
+<td>800</td>
+<td>8000</td>
+<td>20</td>
+<td>20</td>
+<td>200</td>
+<td align="LEFT">Extended ICWS '94 Draft</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Pizza's Limited Process (LP) Hill (Accessed with
+"<code class="command">;redcode-lp</code>")</td>
+<td>25</td>
+<td>8000</td>
+<td>8</td>
+<td>80000</td>
+<td>200</td>
+<td>200</td>
+<td>200</td>
+<td align="LEFT">Extended ICWS '94 Draft</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Stormking's ICWS '88 Standard Hill (Accessed with
+"<code class="command">;redcode</code>")</td>
+<td>20</td>
+<td>8000</td>
+<td>8000</td>
+<td>80000</td>
+<td>100</td>
+<td>100</td>
+<td>250</td>
+<td align="LEFT">ICWS '88</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Stormking's ICWS '94 No Pspace Hill (Accessed with
+"<code class="command">;redcode-94nop</code>")</td>
+<td>20</td>
+<td>8000</td>
+<td>8000</td>
+<td>80000</td>
+<td>100</td>
+<td>100</td>
+<td>250</td>
+<td align="LEFT">ICWS '94</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Stormking's ICWS '94 Experimental (Big) Hill
+(Accessed with "<code class="command">;redcode-94x</code>")</td>
+<td>20</td>
+<td>55440</td>
+<td>55440</td>
+<td>500000</td>
+<td>200</td>
+<td>200</td>
+<td>250</td>
+<td align="LEFT">Extended ICWS '94 Draft</td>
+</tr>
+
+<tr align="RIGHT">
+<td align="LEFT">Stormking's ICWS '94 Multi-Warrior Hill (Accessed
+with "<code class="command">;redcode-94m</code>")</td>
+<td>10</td>
+<td>8000</td>
+<td>8000</td>
+<td>80000</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+<td align="LEFT">Extended ICWS '94 Draft</td>
+</tr>
+</table></p>
+
+<p><strong>Note:</strong> Warriors on the beginner's hill are
+retired at age 100.</p>
+
+<p>If you just want to get a status report without actually
+challenging the hills, send email with "<code class=
+"command">;status</code>" as the message body (and don't forget
+"<code>Subject: koth</code>" for "pizza"). If you send mail to
+"pizza" with "<code>Subject: koth help</code>" you will receive
+instructions that may be more up to date than those contained in
+this document.</p>
+
+<p>At "stormking", a message body with "<code class=
+"command">;help</code>" will return brief instructions. If you
+submit code containing a "<code class="command">;test</code>" line,
+your warrior will be assembled but not actually pitted against the
+warriors on the hill.</p>
+
+<p>At "pizza", you can use "<code class="command">;redcode[-??]
+test</code>" to do a test challenge of the Hill without affecting
+the status of the Hill. These challenges can be used to see how
+well your warrior does against the current Hill warriors.</p>
+
+<p>All hills run <a href="http://www.koth.org/pmars.html">portable
+MARS (pMARS)</a> version 0.8, a platform-independent Core War
+system available at www.koth.org.</p>
+
+<p>The '94 and '94x hills allow five experimental opcodes and three
+experimental addressing modes currently not covered in the <a href= 
+"#WhatIsICWS94">ICWS'94</a> draft document:</p>
+
+<p><ul>
+<li><code class="code94">LDP</code> - Load P-Space</li>
+
+<li><code class="code94">STP</code> - Store P-Space</li>
+
+<li><code class="code94">SEQ</code> - Skip if EQual (synonym for
+<code class="code88">CMP</code>)</li>
+
+<li><code class="code94">SNE</code> - Skip if Not Equal</li>
+
+<li><code class="code94">NOP</code> - (No OPeration)</li>
+
+<li><code class="code94">*</code> - indirect using A-field as
+pointer</li>
+
+<li><code class="code94">{</code> - predecrement indirect using
+A-field</li>
+
+<li><code class="code94">}</code> - postincrement indirect using
+A-field</li>
+</ul></p>
+
+<p><a href="#TOC_WhatIsKotH">[ToC]</a></p>
+
+<hr>
+<h2><a name="IsItDAT0">15. Is it <code class="code88">DAT 0,
+0</code> or <code class="code88">DAT #0, #0</code>? How do I
+compare to core?</a></h2>
+
+<p>Core is initialized to <code class="code88">DAT 0, 0</code>. This
+is an illegal instruction (in source code) under ICWS'88 rules and
+strictly compliant assemblers (such as KotH or pmars -8) will not
+let you have a <code class="code88">DAT 0, 0</code> instruction in
+your source code - only <code class="code88">DAT #0, #0</code>. So
+this begs the question, how to compare something to see if it is
+empty core. The answer is, most likely the instruction before your
+first instruction and the instruction after your last instruction
+are both <code class="code88">DAT 0, 0</code>. You can use them, or
+any other likely unmodified instructions, for comparison. Note that
+under <a href="#WhatIsICWS94">ICWS'94</a>, <code class="code94">DAT
+0, 0</code> is a legal instruction.</p>
+
+<p><a href="#TOC_IsItDAT0">[ToC]</a></p>
+
+<hr>
+<h2><a name="HowDoesSLTwork">16. How does <code class="code88">
+SLT</code> (Skip if Less Than) work?</a></h2>
+
+<p><code class="code88">SLT</code> gives some people trouble
+because of the way modular arithmetic works. It is important to
+note that all negative numbers are converted to positive numbers
+before a battles begins. Example: <code>-1</code> becomes <code>
+M-1</code> where <code>M</code> is the memory size (core size).</p>
+
+<p>Once you realize that all numbers are treated as positive, it is
+clear what is meant by "less than". It should also be clear that no
+number is less than zero.</p>
+
+<p><a href="#TOC_HowDoesSLTwork">[ToC]</a></p>
+
+<hr>
+<h2><a name="Evaluation">17. What is the difference between
+in-register and in-memory evaluation?</a></h2>
+
+<p>These terms refer to the way instruction operands are evaluated.
+The '88 Redcode standard ICWS'88 is unclear about whether a
+simulator should "buffer" the result of A-operand evaluation before
+the B-operand is evaluated. Simulators that do buffer are said to
+use in-register evaluation, those that don't, in-memory evaluation.
+<a href="#WhatIsICWS94">ICWS'94</a> clears this confusion by
+mandating in-register evaluation. Instructions that execute
+differently under these two forms of evaluation are <code class= 
+"code88">MOV</code>, <code class="code88">ADD</code>, <code class= 
+"code88">SUB</code>, <code class="code88">MUL</code>, <code class= 
+"code88">DIV</code> and <code class="code88">MOD</code> where <em>
+the effective address of the A-operand is modified by evaluation of
+the B-operand</em>. This is best illustrated by an example:</p>
+
+<pre class="code88">
+   <span class="label">L1</span>  mov L2, &lt;L2
+   <span class="label">L2</span>  dat #0, #1
+</pre>
+
+<p>Under in-register evaluation, the <code class="code88">L2</code>
+instruction is saved in a buffer before the <code>L2</code> memory
+location is decremented by evaluation of the B-operand of <code
+class="code88">L1</code>. The saved <code class="code88">DAT
+#0,#1</code> instruction is then written to <code class="code88">
+<span class="label">L2</span></code>, leaving it unchanged.</p>
+
+<p>Under in-memory evaluation, the <code class="code88"><span
+class="label">L2</span></code> instruction is not buffered and thus
+decremented by evaluation of the B-operand. After execution of
+<code class="code88"><span class="label">L1</span></code>, <code
+class="code88"><span class="label">L2</span></code> changes to
+<code class="code88"><span class="label">DAT
+#0,#0</span></code>.</p>
+
+<p><a href="#TOC_Evaluation">[ToC]</a></p>
+
+<hr>
+<h2><a name="pSpace">18. What is P-space?</a></h2>
+
+<p>P-space is an area of memory which only your program's processes
+can access. The contents of each memory location are preserved
+between rounds in a multi-round match.</p>
+
+<p>P-space is in many ways different from the core. First of all,
+each P-space location can only store one number, not a whole
+instruction. Also, the addressing in P-space is absolute, ie. the
+P-space address <code>1</code> is always <code>1</code> regardless
+of where in the core the instruction containing it is. And last but
+not least, P-space can only be accessed by two special
+instructions, <code class="code94">LDP</code> and <code class= 
+"code94">STP</code>.</p>
+
+<p>The syntax of these two instructions is a bit unusual. <code
+class="code94">STP</code>, for example, has an ordinary value in
+the core as its source, which is put into the P-space field pointed
+to by the destination. So the P-space location isn't determined by
+the destination <em>address</em>, but by its <em>value</em>, ie.
+the value that would be overwritten if this were a <code class= 
+"code94">MOV</code>. So <code class="code94">STP.AB #Q, #R</code>
+would put the <em>value</em> Q into the <em>P-space field</em> R
+<strong>mod</strong> <code>PSPACESIZE</code>. Similarly,</p>
+
+<pre class="code94">
+        stp.b  2, 3
+        dat    0, 0
+        dat    0, 9
+        dat    0, 7
+</pre>
+
+<p>would put the value 9 into the P-space field <strong>7</strong>.
+<code class="code88">LDP</code> works the same way, except that now
+the source is a P-space field and the destination a core
+instruction. The P-space location <code>0</code> is a special
+location. It is initialised to a special value before each round.
+This value is:</p>
+
+<p><ul>
+<li><code>-1</code> (or <code>CORESIZE-1</code>) at the beginning
+of the first round</li>
+
+<li><code>0</code> if the program died in the previous round</li>
+
+<li>The number of surviving programs if the program did not die in
+the previous round</li>
+</ul></p>
+
+<p>This means that for one-on-one matches, loss=0, win=1 and
+tie=2.</p>
+
+<p>The default size of P-space is 1/16 of the core size. This size
+is the value of the predefined variable <code>PSPACESIZE</code>.
+The addresses in the P-space wrap around just like in the core, ie.
+you can store a value from <code>0</code> to <code>
+CORESIZE-1</code> in each P-space location. All P-space values
+(except for location <code>0</code>) are <code>0</code>
+initially.</p>
+
+<p><a href="#TOC_pSpace">[ToC]</a></p>
+
+<hr>
+<h2><a name="assert">19. What does "Missing <code class="command">
+;assert ..</code>" in my message from KotH mean?</a></h2>
+
+<p>This means you have omitted an "<code class=
+"command">;assert</code>" line in your submission. "<code class= 
+"command">;assert</code>" is used to specify which environments
+your code will work under or was designed for. For example, if your
+warrior was written for the '94 draft hill then you can put:</p>
+
+<p><pre class="code94">
+<span class="command">;assert CORESIZE==8000</span>
+</pre>
+
+in your code, meaning that an error will occur if you attempt you
+compile the code for a different core size. If you don't want to
+use the features of "<code class="command">;assert</code>" and you
+want to get rid of the annoying warning just put: 
+
+<pre class="code94">
+<span class="command">;assert 1</span>
+</pre></p>
+
+in your code, which means it will compile unconditionally. 
+
+<p><a href="#TOC_assert">[ToC]</a></p>
+
+<hr>
+<h2><a name="codeformat">20. How should I format my code?</a></h2>
+
+<p>The way you format your code is really your own choice in the end.
+If you are new to the game then use the style you feel most
+comfortable with. However, using a common format helps others to
+understand your code quicker. Most players tend to use the
+following conventions when writing code:</p>
+
+<p><ul>
+<li>use lower case for location names and opcode names</li>
+
+<li>don't add opcode modifiers if you don't need to, eg. <code
+class="code94">add.ab #1, #2</code> is the same as <code class= 
+"code94">add #1, #2</code></li>
+
+<li>use whitespace after every comma</li>
+
+<li>use tabs to align the opcodes, the instruction field(s) and any
+comments</li>
+
+<li>do not use <strong>$</strong> (direct addressing mode) or
+<strong>:</strong> (suffix of some labels)</li>
+</ul></p>
+
+<p><a href="#TOC_codeformat">[ToC]</a></p>
+
+<hr>
+<h2><a name="resources">21. Are there any other Core War related
+resources I should know about?</a></h2>
+
+<p>Using genetic algorithms to generate warriors has been attempted by
+a number of people. There are a number of resources available for
+people who are interested in doing some experimentation:</p>
+
+<p><ul>
+<li>There is a Core War genetic algorithms mailing list at <a href= 
+"mailto:corewar-ga-request@sunsite.auc.dk">
+corewar-ga-request@sunsite.auc.dk</a>. The FTP site for this list
+is at <a href="ftp://sunsite.auc.dk/pub/local/corewar/">
+ftp://sunsite.auc.dk/pub/local/corewar/</a>. The administrator is
+<a href="mailto:martin.pedersen@person.dk">Martin Pedersen
+(martin.pedersen@person.dk)</a>.</li>
+
+<li>Jason's Core War project page (<a href= 
+"http://www.avalon.net/~jboer/projects/corewar/corewar.html">http://www.avalon.net/~jboer/projects/corewar/corewar.html</a>)
+contains a C program which can evolve warriors, along with some
+previously generated warriors.</li>
+
+<li><cite>Core Wars Genetics: The Evolution of Predation</cite> by
+John Perry can be found at <a href= 
+"http://www.koth.org/evolving_warriors.html">
+http://www.koth.org/evolving_warriors.html</a>.</li>
+
+<li>The most recent paper on Core War evolution is by Ryan Coleman
+and can be found at <a href= 
+"http://www.geocities.com/CapeCanaveral/Launchpad/6898/paper.html">
+http://www.geocities.com/CapeCanaveral/Launchpad/6898/paper.html</a>.</li>
+</ul></p>
+
+<p><a href="#TOC_resources">[ToC]</a></p>
+
+<hr>
+<h2><a name="WhatDoesMean">22. What does (expression or term of
+your choice) mean?</a></h2>
+
+<p>Here is a selected glossary of terms. If you have a definition
+and/or term you wish to see here, please <a href= 
+"mailto:anton@paradise.net.nz">send it to me</a>.</p>
+
+<p>(References to an X-like program mean that the term X is derived
+from the specific program X and has become a generic term).</p>
+
+<dl>
+<dt><a name="BinaryLaunch">Binary launch</a></dt>
+
+<dd>One of several means to start an imp-spiral running. The
+fastest launch technique, but requires the most code. See also <a
+href="#JMPADDLaunch"><code class="code88">JMP</code>/<code class= 
+"code88">ADD</code> Launch</a> and <a href="#VectorLaunch">Vector
+Launch</a>. 
+
+<pre class="code88">
+    <span class="macro">impsize   equ 2667</span>
+    <span class="label">example</span>   spl 4               <span class="comment">; extend by adding spl 8, spl 16, etc.</span>
+              spl 2
+              jmp imp+(0*impsize) <span class="comment">; jmp's execute in order</span>
+              jmp imp+(1*impsize)
+              spl 2
+              jmp imp+(2*impsize)
+              jmp imp+(3*impsize)
+    <span class="label">imp</span>       mov 0, impsize      <span
+class="comment">; in '94 use -&gt; mov.i #0, impsize</span>
+</pre>
+</dd>
+
+<dt>Bootstrapping</dt>
+
+<dd>Strategy of copying the active portion of the program away from
+the initial location, leaving a decoy behind and making the
+relocated program as small as possible.</dd>
+
+<dt>B-Scanners</dt>
+
+<dd>Scanners which only recognize non-zero B-fields. 
+
+<pre class="code88">
+    <span class="label">example</span>   add #10, scan
+    <span class="label">scan</span>      jmz example, 10
+</pre>
+</dd>
+
+<dt><a name="C">c</a></dt>
+
+<dd>Measure of speed, equal to one location per cycle. Speed of
+light.</dd>
+
+<dt><a name="CMPScanner"><code class="code88">
+CMP</code>-Scanner</a></dt>
+
+<dd>A Scanner which uses a <code class="code88">CMP</code>
+instruction to look for opponents. 
+
+<pre class="code88">
+    <span class="label">example</span>   add step, scan
+    <span class="label">scan</span>      cmp 10, 30
+              jmp attack
+              jmp example
+    <span class="label">step</span>      dat #20, #20
+</pre>
+</dd>
+
+<dt>Colour</dt>
+
+<dd>Property of bombs making them visible to scanners, causing them
+to attack useless locations, thus slowing them down. 
+
+<pre class="code88">
+    <span class="label">example</span>   dat #100
+</pre>
+</dd>
+
+<dt>Core-Clear</dt>
+
+<dd>Code that sequentially overwrites core with <code class="code88">DAT</code> instructions; usually the last part of a
+program.</dd>
+
+<dt>Decoys</dt>
+
+<dd>Bogus or unused instructions meant to slow down scanners.
+Typically, <code class="code88">DAT</code>s with non-zero
+B-fields.</dd>
+
+<dt>Decrement Resistant</dt>
+
+<dd>Property of warriors making them functional (or at least
+partially functional) when overrun by a <a href="#DJNstream"><code class="code88">DJN</code>-stream</a>.</dd>
+
+<dt><a name="DJNstream"><code class="code88">DJN</code>-Stream
+(also <code class="code88">DJN</code>-Train)</a></dt>
+
+<dd>Using a <code class="code88">DJN</code> command to rapidly
+decrement core locations. 
+
+<pre class="code88">
+    <span class="label">example</span>   ...
+              ...
+              djn example, &lt;4000
+</pre>
+</dd>
+
+<dt>Dwarf</dt>
+
+<dd>The prototypical small bomber.</dd>
+
+<dt>Gate-busting (also gate-crashing)</dt>
+
+<dd>technique to "interweave" a decrement-resistant imp-spiral
+(e.g. <code class="code88">MOV 0, 2668</code>) with a standard one
+to overrun imp-gates.</dd>
+
+<dt>Hybrids</dt>
+
+<dd>warriors that combine two or more of the basic strategies,
+either in sequence (e.g. stone-&gt;paper) or in parallel (e.g.
+imp/stone).</dd>
+
+<dt><a name="Imp">Imp</a></dt>
+
+<dd>Program which only uses the <code class="code88">MOV</code>
+instruction. 
+
+<pre class="code88">
+    <span class="label">example</span>   mov 0, 1
+</pre>
+
+or 
+
+<pre class="code88">
+    <span class="label">example</span>   mov 0, 2
+              mov 0, 2
+</pre>
+</dd>
+
+<dt>Imp-Gate</dt>
+
+<dd>A location in core which is bombed or decremented continuously
+so that an <a href="#Imp">Imp</a> can not pass. Also used to
+describe the program-code which maintains the gate. 
+
+<pre class="code88">
+    <span class="label">example</span>   ...
+              ...
+              spl 0, &lt;example
+              dat &lt;example, #0
+</pre>
+</dd>
+
+<dt>Imp-Ring</dt>
+
+<dd>A minimal <a href="#ImpSpiral">Imp-Spiral</a>. 
+
+<pre class="code88">
+    <span class="macro">D         EQU (CORESIZE+1)/3</span>
+    <span class="label">a</span>         mov 0, D   <span class="comment">; copy self to b</span>
+    <span class="label">b</span>         mov 0, D   <span class="comment">; copy self to c</span>
+    <span class="label">c</span>         mov 0, D   <span class="comment">; copy self to a+1</span>
+</pre>
+</dd>
+
+<dt><a name="ImpSpiral">Imp-Spiral</a></dt>
+
+<dd>An <a href="#Imp">Imp-like</a> program with two or more
+processes supporting each other. A three-point spiral, with six
+processes running in this sequence: 
+
+<pre class="code88">
+    <span class="macro">D         EQU (CORESIZE+1)/3</span>
+    <span class="label">a</span>         mov 0, D   <span class="comment">; copy self to b</span>
+    <span class="label">b</span>         mov 0, D   <span class="comment">; copy self to c</span>
+    <span class="label">c</span>         mov 0, D   <span class="comment">; copy self to a+1</span>
+    <span class="label">a+1</span>       mov 0, D   <span class="comment">; copy self to b+1</span>
+    <span class="label">b+1</span>       mov 0, D   <span class="comment">; copy self to c+1</span>
+    <span class="label">c+1</span>       mov 0, D   <span class="comment">; copy self to a+2</span>
+</pre>
+</dd>
+
+<dt>Incendiary Bomb</dt>
+
+<dd>A type of Stun bomb which creates a <code class="code88">SPL
+0</code> carpet. 
+
+<pre class="code88">
+    <span class="label">example</span>   spl 0, 8
+              mov -1, &lt;-1
+</pre>
+</dd>
+
+<dt><a name="JMPADDLaunch"><code class="code88">JMP</code>/<code
+class="code88">ADD</code> Launch</a></dt>
+
+<dd>one of several means to start an <a href="#ImpSpiral">
+imp-spiral</a> running. The slowest launch technique, but requires
+the least code. See also <a href="#BinaryLaunch">Binary Launch</a>
+and <a href="#VectorLaunch">Vector Launch</a>. 
+
+<pre class="code88">
+    <span class="macro">IMPSIZE   EQU 2667</span>
+    <span class="label">example</span>   spl 1               <span class="comment">; extend by adding more spl 1's</span>
+              spl 1
+              spl 2
+              jmp @0, imp
+              add #IMPSIZE, -1    <span class="comment">; bump address by impsize after each jmp</span>
+              dat #0, #0          <span class="comment">; excess processes must die!</span>
+    <span class="label">imp</span>       mov 0, IMPSIZE      <span class="comment">; in '94 use -&gt; mov.i #0,IMPSIZE</span>
+</pre>
+</dd>
+
+<dt>Mirror</dt>
+
+<dd>see <a href="#Reflection">reflection</a>.</dd>
+
+<dt>On-axis/off-axis</dt>
+
+<dd>On-axis scanners compare two locations M/2 apart, where M is
+the memory size. Off-axis scanners use some other separation.</dd>
+
+<dt>Optimal Constants</dt>
+
+<dd>(also optima-type constants) Bomb or scan increments chosen to
+cover core most effectively, i.e. leaving gaps of uniform size.
+Programs to calculate optimal constants and lists of optimal
+numbers are available at <a href="ftp://www.koth.org/corewar">
+www.koth.org</a>.</dd>
+
+<dt>Paper</dt>
+
+<dd>A Paper-like program is one which replicates itself many times.
+Part of the Scissors (beats) Paper (beats) Stone (beats Scissors)
+analogy.</dd>
+
+<dt><a name="PWarrior">P-Warrior</a></dt>
+
+<dd>A warrior which uses the results of previous round(s) in order
+to determine which strategy it will use.</dd>
+
+<dt><a name="PitTrapper">Pit-Trapper</a></dt>
+
+<dd>(also Slaver, Vampire). A program which enslaves another.
+Usually accomplished by bombing with <code>JMP</code>s to a <code
+class="code88">SPL 0</code> pit with an optional core-clear
+routine.</dd>
+
+<dt><a name="Q^2">Q^2 Scan</a></dt>
+
+<dd>A modern version of the <a href="#QScan">Quick Scan</a> where
+anything found is attacked almost immediately.</dd>
+
+<dt><a name="QScan">Quick Scan</a></dt>
+
+<dd>2<a href="#C">c</a> scan of a set group of core locations with
+bombing if anything is found. Both of the following codes snips
+scan 16 locations and check for a find. If anything is found, it is
+attacked, otherwise 16 more locations are scanned. 
+
+<p>Example:</p>
+
+<pre class="code88">
+     <span class="label">start</span>
+     <span class="macro">s1 for 8</span>    <span class="comment">;'88 scan</span>
+            cmp  start+100*s1, start+100*s1+4000 <span class="comment">;check two locations</span>
+            mov  #start+100*s1-found, found      <span class="comment">;they differ so set pointer</span>
+     <span class="macro">rof</span>
+            jmn  attack,   found    <span class="comment">;if we have something, get it</span>
+     <span class="macro">s2 for 8</span>
+            cmp  start+100*(s2+6), start+100*(s2+6)+4000
+            mov  #start+100*(s2+6)-found, found
+     <span class="macro">rof</span>
+     <span class="label">found</span>  jmz  moveme,  #0        <span class="comment">;skip attack if qscan found nothing</span>
+     <span class="label">attack</span> cmp  @found,  start-1   <span class="comment">;does found points to empty space?</span>
+            add  #4000,   found     <span class="comment">;no, so point to correct location</span>
+            mov  start-1, @found    <span class="comment">;move a bomb</span>
+     <span class="label">moveme</span> jmp  0,       0
+
+</pre>
+
+In <a href="#WhatIsICWS94">ICWS'94</a>, the quick scan code is more
+compact because of the <code class="code94">SNE</code> opcode: 
+
+<pre class="code94">
+     <span class="label">start</span>       <span class="comment">;'94 scan</span>
+     <span class="macro">s1 for 4</span>
+            sne  start+400*s1, start+400*s1+100     <span class="comment">;check two locations</span>
+            seq  start+400*s1+200, start+400*s1+300 <span class="comment">;check two locations</span>
+            mov  #start+400*s1-found, found       <span class="comment">;they differ so set pointer</span>
+     <span class="macro">rof</span>
+            jmn  which,   found     <span class="comment">;if we have something, get it</span>
+     <span class="macro">s2 for 4</span>
+            sne  start+400*(s2+4), start+400*(s2+4)+100
+            seq  start+400*(s2+4)+200, start+400*(s2+4)+300
+            mov  #start+400*(s2+4)-found-100, found
+     <span class="macro">rof</span>
+     <span class="label">found</span>  jmz  moveme,  #0        <span class="comment">;skip attack if qscan found nothing</span>
+            add  #100,    -1        <span class="comment">;increment pointer till we get the</span>
+     <span class="label">which</span>  jmn  -1,      @found    <span class="comment">;right place</span>
+            mov  start-1, @found    <span class="comment">;move a bomb</span>
+     <span class="label">moveme</span> jmp  0,       0
+</pre>
+</dd>
+
+<dt><a name="Reflection">Reflection</a></dt>
+
+<dd>Copy of a program or program part, positioned to make the
+active program invisible to a <a href="#CMPScanner"><code class= 
+"code88">CMP</code>-scanner</a>.</dd>
+
+<dt>Replicator</dt>
+
+<dd>Generic for Paper. A program which makes many copies of itself,
+each copy also making copies.</dd>
+
+<dt>Self-Splitting</dt>
+
+<dd>Strategy of amplifying the number of processes executing a
+piece of code. 
+
+<pre class="code88">
+    <span class="label">example</span>    spl 0
+    <span class="label">loop</span>       add #10, example
+               mov example, @example
+               jmp loop
+</pre>
+</dd>
+
+<dt>Scanner</dt>
+
+<dd>A program which searches through core for an opponent rather
+than bombing blindly.</dd>
+
+<dt>Scissors</dt>
+
+<dd>A program designed to beat replicators, usually a (B-field
+scanning) vampire. Part of the Paper-Scissors-Stone analogy.</dd>
+
+<dt>Self-Repair</dt>
+
+<dd>Ability of a program to fix it's own code after attack.</dd>
+
+<dt><a name="Silk">Silk</a></dt>
+
+<dd>A replicator which splits off a process to each new copy before
+actually copying the code. This allows it to replicate extremely
+quickly. Example:
+
+<pre class="code94">
+            spl   1
+            mov   -1, 0
+            spl   1                <span class="comment">;generate 6 consecutive processes</span>
+    <span class="label">silk</span>    spl   3620,   #0       <span class="comment">;split to new copy</span>
+            mov   &gt;-1, }-1      <span class="comment">;copy self to new location</span>
+            mov   bomb,   &gt;2000 <span class="comment">;linear bombing</span>
+            mov   bomb,   }2042    <span class="comment">;A-indirect bombing for anti-vamp</span>
+            jmp   silk,   {silk    <span class="comment">;reset source pointer, make new copy</span>
+    <span class="label">bomb</span>    dat   &gt;2667,  &gt;5334  <span class="comment">;anti-imp bomb</span>
+</pre>
+</dd>
+
+<dt>Slaver</dt>
+
+<dd>see <a href="#PitTrapper">Pit-Trapper</a>.</dd>
+
+<dt>Stealth</dt>
+
+<dd>Property of programs, or program parts, which are invisible to
+scanners, accomplished by using zero B-fields and reflections.</dd>
+
+<dt>Stone</dt>
+
+<dd>A Stone-like program designed to be a small bomber. Part of the
+Paper-Scissors-Stone analogy.</dd>
+
+<dt>Stun</dt>
+
+<dd>A type of bomb which makes the opponent multiply useless
+processes, thus slowing it down. Example is referred to as a <code
+class="code88">SPL</code>-<code class="code88">JMP</code> bomb. 
+
+<pre class="code88">
+    <span class="label">example</span>    spl   0
+               jmp   -1
+</pre>
+</dd>
+
+<dt>Two-Pass Core-Clear (also <code class="code88">SPL</code>/<code
+class="code88">DAT</code> Core-Clear)</dt>
+
+<dd>core clear that fills core first with <code class="code88">
+SPL</code> instructions, then with <code class="code88">
+DAT</code>s. This is very effective in killing paper and certain
+imp-spiral variations.</dd>
+
+<dt>Vampire</dt>
+
+<dd>see <a href="#PitTrapper">Pit-Trapper</a>.</dd>
+
+<dt><a name="VectorLaunch">Vector Launch</a></dt>
+
+<dd>one of several means to start an <a href="#ImpSpiral">
+imp-spiral</a> running. As fast as Binary Launch, but requiring
+much less code. See also <a href="#JMPADDLaunch"><code class=
+"code88">JMP</code>/<code class="code88">ADD</code> Launch</a> and
+<a href="#BinaryLaunch">Binary Launch</a>. This example is one form
+of a Vector Launch: 
+
+<pre class="code94">
+    <span class="macro">sz      EQU   2667</span>
+
+            spl   1
+            spl   1
+            jmp   @vt, }0
+    <span class="label">vt</span>      dat   #0, imp+0*sz <span class="comment">; start of vector table</span>
+            dat   #0, imp+1*sz
+            dat   #0, imp+2*sz
+            dat   #0, imp+3*sz <span class="comment">; end of vector table</span>
+    <span class="label">imp</span>     mov.i #0, sz
+</pre>
+</dd>
+</dl>
+
+<p><a href="#TOC_WhatDoesMean">[ToC]</a></p>
+
+<hr>
+<h2><a name="OtherQuestions">23. Other questions?</a></h2>
+
+Just ask in the <a href="news:rec.games.corewar">
+rec.games.corewar</a> newsgroup or <a href= 
+"mailto:anton@paradise.net.nz">contact me</a>. If you are shy,
+check out the <a href="ftp://www.koth.org/pub/corewar/newsgroup">Core
+War archives</a> first to see if your question has been answered
+before. 
+
+<p><a href="#TOC_OtherQuestions">[ToC]</a></p>
+
+<hr>
+<h2><a name="Credits">Credits</a></h2>
+
+<a href="mailto:anton@paradise.net.nz">Additions, corrections,
+etc.</a> to this document are solicited. Thanks in particular to
+the following people who have contributed major portions of this
+document: 
+
+<ul>
+<li>Mark Durham (wrote the original version of the FAQ)</li>
+<li>Paul Kline</li>
+<li>Randy Graham</li>
+<li>Stefan Strack (maintained a recent version of the FAQ)</li>
+</ul>
+
+<hr>
+<p>Copyright &copy; 2000 Anton Marsden.</p>
+
+<p>Verbatim copying and distribution of this entire article is
+permitted in any medium, provided this notice is preserved.</p>
+
+<hr>
+<a href="http://validator.w3.org/"><img border="0" src="http://validator.w3.org/images/vh40.gif" align="RIGHT" alt="Valid HTML 4.0!" height="31" width="88"></a>
+<A HREF="http://jigsaw.w3.org/css-validator"><img style="border:0;width:88px;height:31px" SRC="http://jigsaw.w3.org/css-validator/images/vcss.gif" ALT="Valid CSS!"></A>
+</body>
+</html>
+

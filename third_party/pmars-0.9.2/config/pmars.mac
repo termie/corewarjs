@@ -1,0 +1,163 @@
+version= echo $Id: pmars.mac,v 1.1.1.1 2000/08/18 14:34:50 iltzu Exp $
+pmars.mac: default macro file for pmars (version 0.5+)
+The macros below include bindings for DOS extended keys; e.g. pressing the
+"F10" function key executes the "shell" command (the space before "sh"
+prevents it from being repeated by <Enter>). To change the key bindings,
+simply edit the command chain after the equal sign. Additional macros (up
+to 100) can be added. Recognized "hot-key" names apart from those below are
+"alt-a" thru "alt-z" and "ctrl-a" thru "ctrl-z".
+You can also invoke these macros "manually" as you would any other macro, e.g.
+"macro f1<enter>". This works also for non-PCs.
+
+The cdb macro language supports macro nesting, loops, conditional (if-)
+statements. For a complicated macro, see "check" below.
+
+key-x macros: issued from the coreviewer
+Displays info and continues:
+key-p= progress~registers~go
+key-l= m f5~go
+
+PC function keys
+f1= close~cls~help
+f2= write pmars.log
+f3= write
+f4= @skip 1000~m f5~!
+f5= switch 2~@step~cls~l pc2-6,pc2+6~switch~@step~cls~l pc1-6,pc1+6
+f6= switch 1~m f7~swi~cls~echo @a~m @a_f~l-1,+1~echo @b~m @b_f~l-1,+1
+f7= @s~cls~l-5,+5~ech a~m a_f~l-1,+1~ech b~m b_f~l-1,+1~@l pc
+f8= m f7~swi~m f7~swi
+f9= progress~go
+f10= sh
+
+The mouse click executes this macro
+mousel= cls~l ,+lines-4
+mousem= m mousel
+mouser= cls~l ,+lines-4~@l -lines+4
+mouse= m mousel
+
+Replacements for "step", "go", .., using the two-panel display
+alt-g= sw 2~@go~m d_env
+alt-s= sw 2~@step~m d_env
+alt-c= sw 2~@con~m d_env
+alt-t= sw 2~@thread~m d_env
+
+d_env=cls~-5,+5~echo A,B:~m a_f~.~m b_f~.~echo @A,@B:~m d_env2
+d_env2= m @a_f~.~m @b_f~.~echo *A,*B:~m *a_f~.~m *b_f~.~sw 1~l pc
+
+Accessories, set the current address to A/B-pointer
+a_f= @l pc~@l .+a
+b_f= @l pc~@l .+b
+@a_f= m a_f~@l .+b
+@b_f= m b_f~@l .+b
+<a_f= m a_f~@l .+b-1
+<b_f= m b_f~@l .+b-1
+*a_f= m a_f~@l .+a
+*b_f= m b_f~@l .+a
+
+(ins,del do not change curAddr (dot-address))
+ins= trace t=.~l -5,+5~@l t
+del= untrace u=.~l -5,+5~@l u
+home= echo Processes at current address:~m pcur
+end= continue
+
+PC arrow/page keys for scrolling and panel switching
+Tab
+ctrl-i= switch
+This is Shift-Tab (0,15)
+xkey(15)= close
+left= switch 1
+right= switch 2
+up= cls~l -lines,-1
+down= cls~l -lines+2,+1
+pgdn= cls~l +1,+lines
+pgup= cls~l -(lines*2)+1,-lines
+
+alt-x= quit
+alt-m= write pmars2.mac~@macro~write~echo Macros saved to "pmars2.mac"
+= @macro,user
+
+ctrl-u= m up
+ctrl-d= m down
+ctrl-k= m pgup
+ctrl-l= m pgdn
+ctrl-x= quit
+ctrl-n= m next 
+next= echo Advancing to next round~@pq~@f0,$~dat 0,0~@pq off~@go~@st
+
+-CHECK--------------------------------
+Macro check: execute until a core segment [x,y] changes
+check= if x==y && x==0~m c_err~@ca c=0~!!~m c_step ~m _check~if z==c~!~m _cd
+
+Subroutine c_step, advance execution. Change this to "@skip n" for more speed
+c_step= @step
+
+Subroutine _check computes the actual checksum, expects x,y; uses i,j; returns z
+_check= @ca (i=x)&&(j=(y+1)%($+1)),z=0~!!~@l i~m _c2
+_c2= @ca z=z+i+(A+B),i=(i+1)%($+1)~if i != j~!~if !c~@ca c=z
+
+A difference was detected
+_cd=@ca c=z~echo Code segment has changed
+
+Usage info if x and y were not set
+_ce= echo Set x to start, y to end of code to be checksummed (x <= y)~reset
+--------------------------------------
+Bomb run: simulate a bombing pattern
+bomb_run= if !x || !y~m _b_err~@ca z=0~!!~@ed z=z+x~dat -999~!y
+_b_err= echo Set x to bomb increment and y to loop count~reset
+--------------------------------------
+count: count core addresses that match "w?"
+count= &ca z=.~m w?~&ca x=.,c=0~!!~m w?~&ca c=c+1~if .!=x~!~ca c~&l z
+w?= &search ,
+--------------------------------------
+This one calculates a simplified bomb spread (bomb is "w?"). The lower
+the number, the better the spread. Use in conjunction with bomb_run.
+spread= @ca z=.~@l$-1~m w?~@ca x=.,c=0&&f=1~!!~m w?~if .==x~m _$~m _1
+_1= @ca c=c+(f=f*-1)*(.-x),x=.~!~This is a continuation line
+_$= Echo Spread is~calc c~@l z~reset~_The_End_
+--------------------------------------
+imp-numbers: calculate all imp numbers [point,length] for current coresize.
+imp-numbers= @ca c=$+1,i=2~  !!~m _divisors~!
+_divisors= @ca d=0~  !!~if ((e=c*(d=d+1)+1)%i),j=e/i~!30  ~m _d2
+_d2= if i>j~reset~if d<30~ca i,j%c~@ca i=i+1
+--------------------------------------
+pcur - count number of processes pointing to the current address
+pcur= m _pstep~if.==z~@ca n=n+1~m _pend
+These two (sub)macros are shared code:
+_pstep=@ca z=.,c=n=0~!!~@pq~@l c=(c+1)%($+1)~@pq off
+_pend=if c!=0~!~ca n~@l z
+--------------------------------------
+pseg - calculates how many processes are operating inside segment [x,y]
+pseg= m _pstep~m _ptest~m _pend
+_ptest= if y>=x && x<=. && y>=. || y<x && !(x<=. && y>=.)~@ca n=n+1
+--------------------------------------
+stone-debug executes until code is executed that has been modified by the
+stone's MOV instruction. This may be a self-modification in which case this
+macro is useful for optimizing the stone's constants.
+stone-debug= @$~if !o~@ca o=-1~se mov.i<*t~if .==$~m _sde~mov on~@ca m=.~m _sd
+
+Message: MOV is not traced
+_sde= echo Trace the stone "MOV <" instruction before calling stone-debug~res
+
+Main loop: executes until the next trace. If this isn't the MOV address,
+we have modified ourselves. Else, if the MOV instruction points to itself,
+we are about to modify ourselves. Else, trace the addresses referenced by
+the MOV and continue.
+_sd=!!~@go~t o~if(n=.)!=m,x=+a~!!~u.~m _sdf~!1~m _sds~t c~@ca o=n+x~m _sdt~!
+
+Test whether MOV points to itself. Remove the d comparison if B-mode is direct
+_sdt= @l n~if A==0||B==0||c==n||d==n~m _sdf
+
+Save indirect A and B address in c and d.
+Change: A-mode           B-mode
+        <       <a_f     <$     <b_f
+        >       @a_f     >$     @b_f
+_sds= m <a_f~@ca c=.~m <b_f~@ca d=.
+
+Report self modification. Stop.
+_sdf= echo Instruction modified/referenced by MOV~l.~reset
+
+--------------------------------------
+s(tone)run - a simpler version of stone-debug traces the addresses referenced
+by the mov <*,* intruction (needs to be traced before starting). Useful mainly
+for looking at the bombing pattern.
+srun= @go~t+A~@l+A~@l+B-1~t.~t pc+b~!2500

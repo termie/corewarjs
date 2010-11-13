@@ -1,0 +1,9 @@
+;redcode-94x
+;options for KotH 
+;use pmars -@ 94x.opt file1 [files...]
+
+-s 55440       ;coresize
+-p 10000       ;max. proc.
+-c 500000      ;cycles
+-l 200         ;warrior length
+;-v 13          ;coreview mode

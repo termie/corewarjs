@@ -1,0 +1,117 @@
+____________________
+What's new in version 0.8
+
+  P-space
+
+    Originating from discussions on rec.games.corewar, P-space is an
+    attempt at making warriors more "intelligent" by giving them a memory.
+    P-space, short for "private", "permanent" or "priviledged" space is a
+    memory area separate from core whose contents is not cleared between
+    rounds. Every warrior has its own P-space for gathering information
+    about the opposing warrior, but there is a provision for sharing
+    P-space in team play (see below).
+
+    P-space cells contain values in the range 0..CORESIZE-1. The number of
+    P-space cells can be adjusted with the -S command line option; by
+    default, P-space size is 1/16th of CORESIZE. This number is available
+    to warriors as the predefined variable PSPACESIZE.  pMARS updates
+    P-space cell 0 at the beginning of each round with the result of the
+    previous round: 0 signifies a loss in the previous round, a number
+    larger than zero means that the warrior survived until the end of the
+    round, the value indicating the number of surviving warriors. That is,
+    a value of "1" means that the warrior survived by itself (a "win" in
+    a two-warrior battle), a value of "2" that two warriors lasted until
+    the end (a "tie" in a two warrior battle), etc..
+    In the first round, P-cell 0 is set to -1 (actually CORESIZE-1) to
+    indicate that there is no previous result.
+
+    There are two new instructions for accessing P-space:
+
+        LDP
+            (Load P-space) loads P-space cell specified by A-value into
+            core at B-address.
+
+        STP
+            (Store P-space) stores A-value into P-space cell specified by
+            B-value.
+
+    It is important to note that P-space cells are refered to by
+    A/B-values as opposed to A/B-addresses. As an example,
+    "STP #10,#1" stores number 10 in P-cell 1.
+
+    Since all P-space access is only via these two instructions, it takes
+    too much time and space to use P-space for working variables where
+    they would be safe from the opposing warrior. P-space was made 
+    deliberately hard to access, unlike a set of general purpose 
+    registers.
+
+    P-space can also be used for communication between warriors belonging 
+    to a team in multi-warrior core war. To allow communication, P-space
+    has to be declared as "shared". You do this by including the PIN
+    pseudo-opcode in your source:
+
+        PIN
+            (P-space Identification Number) has a single numerical
+            argument. If two or more participating warriors have the same
+            PIN argument, they share the same P-space. If the PIN
+            pseudo-opcode is missing from a warrior's source, its P-space
+            is strictly private. The PIN argument is not normalized to
+            [0..CORESIZE-1] before comparison. "PIN 0" and "PIN
+            CORESIZE" are therefore not the same.
+
+    P-cell #0 holding the result of the last round is exempt from sharing,
+    i.e.  every warrior has its own last round cell even though the rest
+    of its P-space may be shared.
+
+  CDB commands
+
+    The new cdb command "pspace" switches the debugger into P-space mode.
+    In this mode, "list", "edit", etc. work on the P-space instead of
+    core. This command complements the "pqueue" and "wqueue" commands.
+
+    When you start a cdb command with a '@' character, its output does not
+    go to the screen, but it goes to a logfile if one has been opened. This
+    old feature has now been complemented with the '&' character: "&go"
+    sends output to neither screen nor logfile and is useful if you capture
+    debugging info and are only interested in the "side-effects" of certain
+    commands.
+
+  Custom scores
+
+    There is a new command line option "=" that lets you specify a custom
+    score formula.  By default, warriors are awarded (W*W-1)/S points per
+    round (W: number of warriors, S: number of survivors). You can change
+    this for some interesting new tournament variations. E.g.:
+
+        -= "W-S+1"          ;one-on-one: wins 2 pts, ties 1 pt
+        -= "(W*W+1-S)/S"    ;one-on-one: wins 4 pts, ties 1 pt
+
+    See pmars.doc for further details.
+
+  New ports and displays
+
+    pMARS now runs on different flavors of VMS and comes with a complete
+    help system and LSE support.  The VMS binary, command and help files
+    are released separately.
+
+    Often requested, here it is finally: An X-Windows display for pMARS.
+    Include the XWINGRAPHX directive in makefile:CFLAGS to compile
+    X-Windows pMARS. There are a number of new command line options that
+    control the X-display. See pmars.doc for details.
+
+    The graphics display for linux using the SVGA library is also new. The
+    linux display looks a lot like the DOS graphics display, there's even
+    mouse support. See README for more information.
+
+    We finally got pMARS to compile with the 16-bit DOS compilers
+    Turbo/Borland C again. If there's interest, we will make the binaries
+    that will work on 286 and lower machines available.
+
+  Simulator/Debugger
+
+    Previously, the trace flag of an instruction would be erased by
+    overwriting, even when "moveable off" was entered at the cdb prompt
+    or ";debug static" was included in the warrior source. This was
+    a speed optimization inherited from Mercury2 shaving off a couple of
+    milliseconds run time. Now, the trace flag is untouched when static
+    debugging is selected.

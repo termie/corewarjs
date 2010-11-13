@@ -1,0 +1,10 @@
+;redcode-icws
+;ICWS Annual Tournament Hill Specs (stormking only) 
+;use pmars -@ icws.opt file1 [files...]
+
+-s 8192        ;coresize
+-p 8000        ;max. processes
+-c 100000      ;cycles
+-l 300         ;warrior length
+-8             ;ICWS '88 instruction set
+;-v 13          ;coreview mode

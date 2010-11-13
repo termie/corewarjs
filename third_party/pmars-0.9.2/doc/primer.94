@@ -1,0 +1,125 @@
+This primer assumes that you  are  familiar  with  corewar  under
+ICWS'88 rules.  For general information about corewar and ICWS'88
+consult the  corewar  archives  at  soda.berkeley.edu,  directory
+pub/corewar.  The primer is a casual introduction to the proposed
+ICWS'94 standard and will focus on comparing the old to the  pro-
+posed  new instruction set (refered to as Redcode '88 and Redcode
+'94 in the following). It is not a  complete  language  reference
+and  should  not  be used as a basis for ICWS'94 implementations.
+The file icws94.draft at soda in pub/corewar/documents should  be
+consulted for a more formal description of the proposed standard.
+
+REDCODE'94
+     New in Redcode '94  are  instruction  modifiers,  additional
+     arithmetic  instructions  and  a  post-increment  addressing
+     mode. These will be discussed in turn. Redcode '94 is a true
+     superset  of  Redcode  '88, i.e. warriors written in Redcode
+     '88 should run without modification on a  MARS  that  imple-
+     ments Redcode '94.
+
+
+INSTRUCTION MODIFIERS
+     The most significant addition to Redcode '88 are instruction
+     modifiers  that  specify whether instructions operate on the
+     A-field, B-field,  or  a  whole  instrucution.  Redcode  '88
+     instructions  operate mostly on B-fields; exceptions to this
+     are ADD/SUB that can add/subtract both A-  and  B-fields  of
+     two  target  addresses  and  CMP  which  can  compare entire
+     instructions. As a result, the A-field  used  to  be  rather
+     difficult,  although  not  impossible to access. Instruction
+     modifiers in Redcode '94 allow easy access to  both  A-  and
+     B-fields. These are the modifiers and their meaning:
+
+     .A   Instructions read and write A-fields.
+
+     .B   Instructions read and write B-fields. It is easiest  to
+          think of .A as .AA and .B as .BB.
+
+     .AB  Instructions read the A-field of the A-instruction  and
+          the B-field of the B-instruction and write to B-fields.
+
+     .BA  Instructions read the B-field of the A-instruction  and
+          the A-field of the B-instruction and write to A-fields.
+
+     .F   Instructions read both A- and B-fields of  the  the  A-
+          and  B-instruction and write to both A- and B-fields (A
+          to A and B to B).
+
+     .X   Instructions read both A- and B-fields of  the  the  A-
+          and  B-instruction  and  write  to both A- and B-fields
+          exchanging fields (A to B and B to A).
+
+     .I   Instructions read and write entire instructions.
+
+     A- and B-instructions are the instructions pointed to by the
+     A-  and B-field, respectively. In immediate addressing mode,
+     A/B-instructions   are   the   current   instruction.    For
+     backwards-compatibilty  with Redcode '88, there is a mapping
+     of modifier-less instructions to instructions with modifiers
+     that takes the A and B-modes into account. E.g.
+
+          MOV 0,1 translates into MOV.I 0,1
+          ADD 0,1 translates into ADD.F 0,1
+          MOV #0,1 translates into MOV.AB #0,1
+
+     In Redcode '94 there are no illegal  instructions,  that  is
+     every  opcode  goes with every modifier and every addressing
+     mode    combination.    Non-sensical     combinations     of
+     opcode/modifier  are  treated  like  the closest combination
+     that makes sense, i.e.
+
+          ADD.I behaves like ADD.F
+
+     Special cases  are  branch  instructions  (JMP,JMZ,JNZ,DJN).
+     Redcode   '94   still  only  allows  to  branch  to  the  A-
+     instruction. If you read the draft, you will  find  that  it
+     cleverly  distinguishes  between  A-numbers  and A-pointers.
+     Branch instructions have A-pointers that are not subject  to
+     modifiers.  This  restriction  was  imposed to disallow all-
+     too-powerful bombs like JMP.F 0,0 and SPL.F 0,0.
+
+MUL,DIV,MOD
+     These three new arithmetic opcodes supplement  ADD  and  SUB
+     from  Redcode  '88.   Some  experimentation with Redcode '94
+     will tell whether they encourage writing more  "intelligent"
+     warriors as Mark Durham suggests. The result of attempting a
+     division by zero in DIV and MOD is at the time of this writ-
+     ing  still  undefined.   pMARS  treats  attempting  a  zero-
+     division like executing a DAT instruction, i.e. the  offend-
+     ing  process is removed from the process queue. If two divi-
+     sions occur as in DIV.F, both divisions  are  attempted  and
+     core  is  updated for the division that succeeded. If either
+     division tried to divide by zero, the process is killed.
+
+POST-INCREMENT INDIRECT
+     The post-increment indirect addressing mode,  symbolized  by
+     ">",  was  added  for symmetry. In contrast to pre-decrement
+     indirect, the field used for indirect addressing  is  incre-
+     mented before the effective address calculation takes place.
+     People have suggested that >  and  <  could  be  useful  for
+     implementing a stack (LIFO) data structure.
+
+OTHERS
+     The ORG (ORiGin) pseudo-instruction is an alternative to END
+     for  specifying  the  execution  start.  The argument of ORG
+     points to  the  start  instruction  relative  to  the  first
+     instruction  of  the  warrior;  ORG  0  points  to the first
+     instruction.
+
+EXAMPLES
+     A dwarf in Redcode '94 becomes:
+
+                  ORG start
+          bomb    DAT.F 0,0
+          start   MOV.I bomb,3
+                  ADD.AB #3044,start
+                  JMP.B start
+
+     Any modifier for the first and last instruction  would  work
+     here.  The  next  code fragment scrambles core by exchanging
+     A/B-fields:
+
+          offset  DAT.I #99,#99
+          mix     MOV.X 10,20
+                  ADD.F offset,mix
+                  JMP.A mix

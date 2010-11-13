@@ -1,0 +1,24 @@
+Useful macros for multiwarrior games
+
+_alive counts the number of warriors currently alive and
+stores the result in n. alive calls _alive and echos the result.
+
+alive=m _alive~ca n
+_alive=@wq c=.,w=n=0~@ca t=$+1~!!~@pq w=w+1~@ca n=n+($>=0)~!t~@pq of~@l c
+alt-a=m alive
+
+_tproc totals the number of processes of all warriors in n. tproc calls _tproc
+and echos the result.
+
+tproc=m _tproc~ca n
+_tproc=@wq c=.,w=n=0~@ca t=$+1~!!~@pq w=w+1~@ca n=n+($+1)*~!t~@pq of~@l c
+alt-b=m tproc
+
+Execute until warrior "x" is dead.
+
+until_dead=@go~@pq x~if $>=0~!~@pq off
+
+Execute until there are "x" warriors left
+
+until_left=!!~@go~m _alive~if n>x~!~@wq of
+

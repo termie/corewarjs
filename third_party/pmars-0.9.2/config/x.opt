@@ -1,0 +1,10 @@
+;redcode-x
+;ICWS'88 Experimental (Small) Hill Specs 
+;use pmars -@ x.opt file1 [files...]
+
+-s 4096        ;coresize
+-p 32          ;max. proc.
+-c 65536       ;cycles
+-l 64          ;warrior length
+-8             ;ICWS '88 instruction set
+;-v 13          ;coreview mode
