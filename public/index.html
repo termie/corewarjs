@@ -38,24 +38,88 @@
           this.width * this.height / this.core.coresize
         );
         this._initialized = false;
+        this._stop = false;
       },
       draw: function () {
         if (!this._initialized) {
           this.initialize();
         }
         for (var i in this.core.core) {
-          var inst = this.core.core[i];
-          var color = this._color(inst);
-          this.grid[i].attr({fill: color});
-
+          this.drawCell(i);
         }
       },
+      drawCell: function (i) {
+        //console.log('draw: ' + i);
+        var inst = this.core.core[i];
+        var color = this._color(inst);
+        this.grid[i].animate({fill: color}, 500);
+      },
       start: function () {
+        for (var d in this.warriors) {
+          var warrior = this.warriors[d];
+          warrior.on('kill', dojo.hitch(this, this.onKill, warrior));
+          warrior.on('split', dojo.hitch(this, this.onSplit, warrior));
+          warrior.on('seek', dojo.hitch(this, this.onSeek, warrior));
+        }
+        this.core.on('coreChange', dojo.hitch(this, this.onCoreChange));
+        this.core.on('defeat', dojo.hitch(this, this.onDefeat));
+        this.core.on('victory', dojo.hitch(this, this.onVictory));
+        this.core.on('stalemate', dojo.hitch(this, this.onStalemate));
         this.core.loadWarriors(this.warriors);
+      },
+      stop: function () {
+        this._stop = true;
+      },
+      onKill: function (warrior, process) {
+        //console.log('kill ' + process);
+        var pos = process.position;
+        var target = this.grid[pos];
+        target.animate({fill: '#F00'}, 500);
+        setTimeout(dojo.hitch(this, this.drawCell, pos), 500);
+      },
+      onSplit: function (warrior, process) {
+        //console.log('split ' + process);
+        var pos = process.newProcess.position;
+        var target = this.grid[pos];
+        target.animate({fill: '#00F'}, 500);
+        setTimeout(dojo.hitch(this, this.drawCell, pos), 500);
+      },
+      onSeek: function (warrior, process) {
+        //console.log('seek ' + process);
+        var pos = process.position;
+        var target = this.grid[pos];
+        target.animate({fill: '#0F0'}, 500);
+        setTimeout(dojo.hitch(this, this.drawCell, pos), 500);
+      },
+      onCoreChange: function (change) {
+        //console.log('coreChange ' + change);
+        var pos = change.position;
+        var target = this.grid[pos];
+        target.animate({fill: '#FF0'}, 500);
+        setTimeout(dojo.hitch(this, this.drawCell, pos), 500);
+      },
+      onDefeat: function (warrior) {
+        console.log('defeat!');
+        console.log(warrior);
+      },
+      onVictory: function (warrior) {
+        console.log('victory!');
+        console.log(warrior);
+        this.stop();
+      },
+      onStalemate: function () {
+        console.log('stalemate :/');
+        this.stop();
       },
       runOnce: function (dbg) {
         this.core.runOnce(dbg);
-        this.draw();
+      },
+      loop: function (interval, dbg) {
+        if (this._stop) {
+          return;
+        }
+        this.runOnce(dbg);
+        setTimeout(dojo.hitch(this, this.loop, interval, dbg), interval);
       },
       initialize: function () {
         this.core.initialize();
@@ -89,6 +153,8 @@
       CORE.warriors.push(new Warrior(
         warrior.name, warrior.offset, warrior.instructions
       ));  
+      var contenders = dojo.byId('contenders');
+      dojo.create('span', {innerHTML: warrior.name}, contenders);
     }
 
     dojo.addOnLoad(function () {
@@ -116,5 +182,6 @@
 </head>
 <body>
   <select id="available"></select>
+  <div id="contenders"></div>
 </body>
 </html>

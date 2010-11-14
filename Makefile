@@ -1,5 +1,7 @@
 
 build: third_party/node-unittest/README.rst lib/pmars.node
+	ln -sF $(PWD)/lib/corewar.js public/corewar.js
+	
 
 third_party/node-unittest/README.rst:
 	git submodule update --init --recursive
