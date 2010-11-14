@@ -57,7 +57,7 @@ CoreBasicTestCase.prototype.testLoadWarriors = function () {
   core.initialize();
   core.loadWarriors([imp, dwarf]);
 
-  this.assertEqual(core.processes.length, 2);
+  this.assertEqual(core.warriors, 2);
   var imp_pos = null;
   var dwarf_pos = null;
 
@@ -67,8 +67,8 @@ CoreBasicTestCase.prototype.testLoadWarriors = function () {
   }
   
   this.assertOk((Math.abs(imp_pos - dwarf_pos) >= mindistance));
-  this.assertEqual(imp.processes[0].position, imp_pos);
-  this.assertEqual(dwarf.processes[0].position, dwarf_pos);
+  this.assertEqual(imp.curProcess.position, imp_pos);
+  this.assertEqual(dwarf.curProcess.position, dwarf_pos);
 
   core.runOnce(true);
   core.runOnce(true);
